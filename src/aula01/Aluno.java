@@ -1,5 +1,4 @@
 package aula01;
-
 // Nome da classe. Também no do programa.
 public class Aluno {
 	private String nome;
@@ -17,6 +16,4 @@ public class Aluno {
 		obj1.inserirNome("Douglas");
 		System.out.println("Saida: "+obj1.recuperarNome());
 	}
-	
-
 }
