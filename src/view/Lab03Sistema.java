@@ -2,12 +2,13 @@ package view;
 import java.util.Scanner;
 // precisa importar pois esta em outro pacote.
 import model.Lab02ContaCorrente;
-public class Lab02Sistema {
+import model.Lab03ContaCorrente;
+public class Lab03Sistema {
 	// criando o objeto myConta. 
-	Lab02ContaCorrente myConta = new Lab02ContaCorrente();
+	
 	
 	public static void main(String[] args) {
-		new Lab02Sistema().executarLab();
+		new Lab03Sistema().executarLab();
 	}
 	private void executarLab() {
 		int opcao = 0;
@@ -16,6 +17,7 @@ public class Lab02Sistema {
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
+			System.out.println("4 - Imprimir");
 			System.out.println("9 - Fim ");
 			System.out.println("Digite sua opção: ");
 			opcao = leia.nextInt();
@@ -28,6 +30,9 @@ public class Lab02Sistema {
 				break;
 			case 3:
 				execDeposito();
+				break;
+			case 4:
+				execConsulta();
 				break;
 			default:
 				break;
@@ -47,10 +52,9 @@ public class Lab02Sistema {
 		System.out.println("Confirma cadastramento(S/N):");
 		String cad = leia.next();
 		if (cad.equalsIgnoreCase("s")){
-			this.myConta.setNumAge (agencia);
-			this.myConta.setNumConta(conta);
-			this.myConta.setNome(nome);
-			this.myConta.setSaldo(saldo);
+			Lab03ContaCorrente myConta = 
+					new Lab03ContaCorrente(agencia,conta,nome,saldo);
+			myConta.gravar();
 			System.out.println("Cadastro realizado com sucesso.");
 		}
 	}
@@ -65,9 +69,13 @@ public class Lab02Sistema {
 		System.out.println("Confirma saque(S/N):");
 		String saq = leia.next();
 		if (saq.equalsIgnoreCase("s")){
-			int ret = this.myConta.sacar (val);
+			Lab03ContaCorrente myConta = 
+					new Lab03ContaCorrente(agencia,conta);
+			System.out.println("Saldo atual: " + myConta.getSaldo() );
+			int ret = myConta.sacar (val);
 			if (ret == 1) {
 				System.out.println("Saque realizado com sucesso.");
+				myConta.gravar();
 			}
 			else {
 				System.out.println("Saldo insuficiente.");
@@ -85,11 +93,23 @@ public class Lab02Sistema {
 		System.out.println("Confirma deposito(S/N):");
 		String saq = leia.next();
 		if (saq.equalsIgnoreCase("s")){
-			this.myConta.deposito(val);
+			Lab03ContaCorrente myConta = 
+					new Lab03ContaCorrente(agencia,conta);
+			System.out.println("Saldo atual: " + myConta.getSaldo() );
+			
+			myConta.deposito(val);
+			myConta.gravar();
 			System.out.println("Deposito realizado com sucesso.");
 		}
 	}
 	public void execConsulta() {
-		this.myConta.imprimir();
+		Scanner leia = new Scanner (System.in);
+		System.out.println("Digite o Numero da Agencia: "); 
+		int agencia = leia.nextInt();
+		System.out.println("Digite o Numero da Conta: ");
+		int conta = leia.nextInt();
+		Lab03ContaCorrente myConta = 
+				new Lab03ContaCorrente(agencia,conta);
+		myConta.imprimir();
 	}
 }
