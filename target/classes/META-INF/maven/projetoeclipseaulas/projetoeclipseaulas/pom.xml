@@ -3,4 +3,13 @@
   <groupId>projetoeclipseaulas</groupId>   
   <artifactId>projetoeclipseaulas</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>LATEST</version>
+		</dependency>
+   </dependencies>
+
 </project>
