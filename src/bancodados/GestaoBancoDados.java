@@ -18,8 +18,10 @@ public class GestaoBancoDados {
 			try {
 				//rem.removerTabela(conex);
 				//cr.criarTabela(conex);
-				//ins.inserirDados(conex, new Lab03ContaCorrente(10,20,"Douglas Mendes",100.50));
-				sel.selecionarDados(conex, new Lab03ContaCorrente(10,20));
+				//ins.inserirDados(conex, 
+				//		new Lab03ContaCorrente(10,400,"Douglas Mendes",100.50));
+				sel.selecionarDados(conex, 
+						new Lab03ContaCorrente(10,400));
 				conex.close();
 				System.out.println("Conexão encerrada com sucesso.");
 			} catch (SQLException e) {

@@ -3,14 +3,16 @@ package bancodados;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+// Primeira classe necessária para interagir com banco de dados. 
 public class ConexaoBancoDados {
 	public Connection conectarBanco() {
         try {
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/postgres";
-            Connection con = DriverManager.getConnection(url, "postgres", "12345");
-            return con;
+            String url = 
+            		"jdbc:postgresql://localhost:5432/postgres";
+            Connection con = DriverManager.getConnection(url,
+            		"postgres", "12345");
+            return con;// Se tudo bem retorna uma conexão.
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
