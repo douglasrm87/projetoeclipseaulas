@@ -1,14 +1,23 @@
 package view;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
+
+import bancodados.AtualizaDados;
+import bancodados.ConexaoBancoDados;
+import bancodados.InsereDados;
+import bancodados.SelecionaDados;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
+
 public class Lab03SistemaBancoDados {
-	// criando o objeto myConta. 
-	
-	
+	// criando o objeto myConta.
+
 	public static void main(String[] args) {
 		new Lab03SistemaBancoDados().executarLab();
 	}
+
 	private void executarLab() {
 		int opcao = 0;
 		while (opcao != 9) {
@@ -38,9 +47,10 @@ public class Lab03SistemaBancoDados {
 			}
 		}
 	}
+
 	public void execCadastramento() {
- 		Scanner leia = new Scanner (System.in);
-		System.out.println("Digite o Numero da Agencia"); 
+		Scanner leia = new Scanner(System.in);
+		System.out.println("Digite o Numero da Agencia");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta");
 		int conta = leia.nextInt();
@@ -50,16 +60,27 @@ public class Lab03SistemaBancoDados {
 		double saldo = leia.nextDouble();
 		System.out.println("Confirma cadastramento(S/N):");
 		String cad = leia.next();
-		if (cad.equalsIgnoreCase("s")){
-			Lab03ContaCorrenteBancoDados myConta = 
-					new Lab03ContaCorrenteBancoDados(agencia,conta,nome,saldo);
-			//Gravar - Inserir
+		if (cad.equalsIgnoreCase("s")) {
+			Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
+			// Gravar - Inserir
+			ConexaoBancoDados conexPost = new ConexaoBancoDados();
+			InsereDados ins = new InsereDados();
+			Connection con = conexPost.conectarBanco();
+			ins.inserirDados(con, myConta);
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Problemas ao encerrar a conexão.");
+				e.printStackTrace();
+			}
+
 			System.out.println("Cadastro realizado com sucesso.");
 		}
 	}
+
 	public void execSaque() {
-		Scanner leia = new Scanner (System.in);
-		System.out.println("Digite o Numero da Agencia: "); 
+		Scanner leia = new Scanner(System.in);
+		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
 		int conta = leia.nextInt();
@@ -67,24 +88,38 @@ public class Lab03SistemaBancoDados {
 		double val = leia.nextDouble();
 		System.out.println("Confirma saque(S/N):");
 		String saq = leia.next();
-		if (saq.equalsIgnoreCase("s")){
-			Lab03ContaCorrenteBancoDados myConta = 
-					new Lab03ContaCorrenteBancoDados(agencia,conta);
+		if (saq.equalsIgnoreCase("s")) {
+			Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
 			// Selecionar
-			System.out.println("Saldo atual: " + myConta.getSaldo() );
-			int ret = myConta.sacar (val);
+			ConexaoBancoDados conexPost = new ConexaoBancoDados();
+			SelecionaDados sel = new SelecionaDados();
+			Connection con = conexPost.conectarBanco();
+			// Faltando retornar os dados selecionados.
+			sel.selecionarDados(con, myConta);
+
+			System.out.println("Saldo atual: " + myConta.getSaldo());
+			int ret = myConta.sacar(val);
 			if (ret == 1) {
+				AtualizaDados atu = new AtualizaDados();
+				atu.atualizarDados(con, myConta);
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				System.out.println("Saque realizado com sucesso.");
-				// Atualizar - Update 
-			}
-			else {
+				// Atualizar - Update
+			} else {
 				System.out.println("Saldo insuficiente.");
 			}
 		}
 	}
+
 	public void execDeposito() {
-		Scanner leia = new Scanner (System.in);
-		System.out.println("Digite o Numero da Agencia: "); 
+		Scanner leia = new Scanner(System.in);
+		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
 		int conta = leia.nextInt();
@@ -92,26 +127,42 @@ public class Lab03SistemaBancoDados {
 		double val = leia.nextDouble();
 		System.out.println("Confirma deposito(S/N):");
 		String saq = leia.next();
-		if (saq.equalsIgnoreCase("s")){
-			Lab03ContaCorrenteBancoDados myConta = 
-					new Lab03ContaCorrenteBancoDados(agencia,conta);
+		if (saq.equalsIgnoreCase("s")) {
+			Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
 			// Selecionar
-			System.out.println("Saldo atual: " + myConta.getSaldo() );
-			
+			ConexaoBancoDados conexPost = new ConexaoBancoDados();
+			SelecionaDados sel = new SelecionaDados();
+			Connection con = conexPost.conectarBanco();
+			// Faltando retornar os dados selecionados.
+			sel.selecionarDados(con, myConta);
+			System.out.println("Saldo atual: " + myConta.getSaldo());
+
 			myConta.deposito(val);
-			// Atualizar - Update 
+			// Atualizar - Update
+			AtualizaDados atu = new AtualizaDados();
+			atu.atualizarDados(con, myConta);
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Deposito realizado com sucesso.");
 		}
 	}
+
 	public void execConsulta() {
-		Scanner leia = new Scanner (System.in);
-		System.out.println("Digite o Numero da Agencia: "); 
+		Scanner leia = new Scanner(System.in);
+		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
 		int conta = leia.nextInt();
-		Lab03ContaCorrenteBancoDados myConta = 
-				new Lab03ContaCorrenteBancoDados(agencia,conta);
+		Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
 		// Selecionar
-		myConta.imprimir();
+		ConexaoBancoDados conexPost = new ConexaoBancoDados();
+		SelecionaDados sel = new SelecionaDados();
+		Connection con = conexPost.conectarBanco();
+		// Faltando retornar os dados selecionados.
+		sel.selecionarDados(con, myConta);
 	}
 }

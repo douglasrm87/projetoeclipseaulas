@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import model.Lab03ContaCorrente;
+import model.Lab03ContaCorrenteBancoDados;
 
 public class GestaoBancoDados {
 	public static void main(String[] args) {
@@ -20,8 +21,9 @@ public class GestaoBancoDados {
 				//cr.criarTabela(conex);
 				//ins.inserirDados(conex, 
 				//		new Lab03ContaCorrente(10,400,"Douglas Mendes",100.50));
-				sel.selecionarDados(conex, 
-						new Lab03ContaCorrente(10,400));
+//				sel.selecionarDados(conex, 
+//						new Lab03ContaCorrenteBancoDados(10,400));
+				
 				conex.close();
 				System.out.println("Conexão encerrada com sucesso.");
 			} catch (SQLException e) {

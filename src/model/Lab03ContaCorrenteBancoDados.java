@@ -36,14 +36,6 @@ public class Lab03ContaCorrenteBancoDados {
 		this.saldo = this.saldo + pValor;
 	}
 
-	public void imprimir() {
-		System.out.println("Imprimindo seu Extrato:");
-		System.out.println("Agencia:" + this.numAge);
-		System.out.println("Conta:" + this.numConta);
-		System.out.println("Nome:" + this.nome);
-		System.out.println("Saldo:" + this.saldo);
-	}
-
 	public int getNumAge() {
 		return numAge;
 	}

@@ -5,10 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Lab03ContaCorrente;
+import model.Lab03ContaCorrenteBancoDados;
 
 public class InsereDados {
 
-	public void inserirDados(Connection con, Lab03ContaCorrente banco) {
+	public void inserirDados(Connection con, Lab03ContaCorrenteBancoDados banco) {
 		String ins = "insert into banco ( nome ,agencia ,conta ,saldo )" + 
 				" VALUES ( ? , ? , ? , ? )";
 		try {

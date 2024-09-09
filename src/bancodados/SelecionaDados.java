@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Lab03ContaCorrente;
+import model.Lab03ContaCorrenteBancoDados;
 
 public class SelecionaDados {
 
-	public void selecionarDados(Connection con, Lab03ContaCorrente banco) {
+	public void selecionarDados(Connection con, Lab03ContaCorrenteBancoDados banco) {
 		String ins = "Select nome ,agencia ,conta ,saldo " + 
 					"From Banco where agencia = ? and conta = ? ";
 		try {
@@ -22,7 +23,9 @@ public class SelecionaDados {
 				System.out.println("Agencia: "+ret.getInt("agencia"));
 				System.out.println("Conta: "+ret.getInt("conta"));
 				System.out.println("Nome: "+ret.getString("nome"));
+				banco.setNome(ret.getString("nome"));
 				System.out.println("Saldo: "+ret.getDouble("saldo"));
+				banco.setSaldo(ret.getDouble("saldo"));
 				
 			}
 			stmt.close();
