@@ -14,7 +14,9 @@ public class Lab05ContaCorrenteEspecial
 	
 
 
-	public Lab05ContaCorrenteEspecial (int ag, int ca, String nome, double saldo , double limite) {
+	public Lab05ContaCorrenteEspecial 
+	(int ag, int ca, String nome, double saldo , 
+			double limite) {
 		super(ag, ca, nome, saldo);
 		this.limiteCredito = limite;
 		 

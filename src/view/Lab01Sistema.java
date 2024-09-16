@@ -1,4 +1,10 @@
 package view;
+/*
+git add .
+git commit -m "lab05"
+git push -u origin main
+
+*/
 import java.util.Scanner;
 public class Lab01Sistema {
 	public static void main(String[] args) {

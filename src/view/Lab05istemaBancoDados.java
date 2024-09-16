@@ -10,6 +10,7 @@ import bancodados.InsereDados;
 import bancodados.SelecionaDados;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
+import model.Lab05ContaCorrenteEspecial;
 
 public class Lab05istemaBancoDados {
 	// criando o objeto myConta.
@@ -50,30 +51,42 @@ public class Lab05istemaBancoDados {
 
 	public void execCadastramento() {
 		Scanner leia = new Scanner(System.in);
-		System.out.println("Digite o Numero da Agencia");
+		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
-		System.out.println("Digite o Numero da Conta");
+		System.out.println("Digite o Numero da Conta: ");
 		int conta = leia.nextInt();
-		System.out.println("Digite o Nome do Cliente");
+		System.out.println("Digite o Nome do Cliente: ");
 		String nome = leia.next();
-		System.out.println("Digite o Saldo");
+		System.out.println("Digite o Saldo: ");
 		double saldo = leia.nextDouble();
+
+		double limite = 0.0;
+		if (agencia >= 5000) {
+			System.out.println("Digite o limite: ");
+			limite = leia.nextDouble();
+		}
+
 		System.out.println("Confirma cadastramento(S/N):");
 		String cad = leia.next();
 		if (cad.equalsIgnoreCase("s")) {
-			Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
-			// Gravar - Inserir
-			ConexaoBancoDados conexPost = new ConexaoBancoDados();
-			InsereDados ins = new InsereDados();
-			Connection con = conexPost.conectarBanco();
-			ins.inserirDados(con, myConta);
-			try {
-				con.close();
-			} catch (SQLException e) {
-				System.out.println("Problemas ao encerrar a conexão.");
-				e.printStackTrace();
+			if (agencia >= 5000) {
+				// Conta corrente especial
+				Lab05ContaCorrenteEspecial cEsp = 
+						new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo,limite);
+			} else {
+				Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
+				// Gravar - Inserir
+				ConexaoBancoDados conexPost = new ConexaoBancoDados();
+				InsereDados ins = new InsereDados();
+				Connection con = conexPost.conectarBanco();
+				ins.inserirDados(con, myConta);
+				try {
+					con.close();
+				} catch (SQLException e) {
+					System.out.println("Problemas ao encerrar a conexão.");
+					e.printStackTrace();
+				}
 			}
-
 			System.out.println("Cadastro realizado com sucesso.");
 		}
 	}
