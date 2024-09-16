@@ -1,11 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
 public class Lab03ContaCorrenteBancoDados {
 	private int numAge = 0;
 	private int numConta;
