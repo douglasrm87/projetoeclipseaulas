@@ -1,5 +1,11 @@
 package view;
 
+/*
+git add .
+git commit -m "lab05"
+git push -u origin main
+
+*/
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -7,7 +13,9 @@ import java.util.Scanner;
 import bancodados.AtualizaDados;
 import bancodados.ConexaoBancoDados;
 import bancodados.InsereDados;
+import bancodados.InsereDadosCCEspecial;
 import bancodados.SelecionaDados;
+import bancodados.SelecionaDadosCCEspecial;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
@@ -69,19 +77,26 @@ public class Lab05istemaBancoDados {
 		System.out.println("Confirma cadastramento(S/N):");
 		String cad = leia.next();
 		if (cad.equalsIgnoreCase("s")) {
+			Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
+			// Gravar - Inserir
+			ConexaoBancoDados conexPost = new ConexaoBancoDados();
+			InsereDados ins = new InsereDados();
+			Connection con = conexPost.conectarBanco();
+			ins.inserirDados(con, myConta);
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Problemas ao encerrar a conexão.");
+				e.printStackTrace();
+			}
 			if (agencia >= 5000) {
-				// Conta corrente especial
-				Lab05ContaCorrenteEspecial cEsp = 
-						new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo,limite);
-			} else {
-				Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
-				// Gravar - Inserir
-				ConexaoBancoDados conexPost = new ConexaoBancoDados();
-				InsereDados ins = new InsereDados();
-				Connection con = conexPost.conectarBanco();
-				ins.inserirDados(con, myConta);
+				Lab05ContaCorrenteEspecial cEsp = new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo, limite);
+				ConexaoBancoDados conexPostesp = new ConexaoBancoDados();
+				InsereDadosCCEspecial insE = new InsereDadosCCEspecial();
+				Connection conE = conexPostesp.conectarBanco();
+				insE.inserirDados(conE, cEsp);
 				try {
-					con.close();
+					conE.close();
 				} catch (SQLException e) {
 					System.out.println("Problemas ao encerrar a conexão.");
 					e.printStackTrace();
@@ -89,6 +104,7 @@ public class Lab05istemaBancoDados {
 			}
 			System.out.println("Cadastro realizado com sucesso.");
 		}
+
 	}
 
 	public void execSaque() {
@@ -102,7 +118,11 @@ public class Lab05istemaBancoDados {
 		System.out.println("Confirma saque(S/N):");
 		String saq = leia.next();
 		if (saq.equalsIgnoreCase("s")) {
-			Lab03ContaCorrenteBancoDados myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
+			Lab03ContaCorrenteBancoDados myConta;
+			if (agencia >= 5000)
+				myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
+			else
+				myConta = new Lab05ContaCorrenteEspecial(agencia, conta);
 			// Selecionar
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			SelecionaDados sel = new SelecionaDados();
@@ -111,7 +131,9 @@ public class Lab05istemaBancoDados {
 			sel.selecionarDados(con, myConta);
 
 			System.out.println("Saldo atual: " + myConta.getSaldo());
+			
 			int ret = myConta.sacar(val);
+			
 			if (ret == 1) {
 				AtualizaDados atu = new AtualizaDados();
 				atu.atualizarDados(con, myConta);
@@ -177,5 +199,15 @@ public class Lab05istemaBancoDados {
 		Connection con = conexPost.conectarBanco();
 		// Faltando retornar os dados selecionados.
 		sel.selecionarDados(con, myConta);
+		
+		SelecionaDadosCCEspecial selE = new SelecionaDadosCCEspecial();
+		selE.selecionarDados(con, new Lab05ContaCorrenteEspecial(agencia, conta));
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Consulta realizada com sucesso.");
 	}
 }

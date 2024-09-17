@@ -1,5 +1,10 @@
 package view;
+/*
+git add .
+git commit -m "lab05"
+git push -u origin main
 
+*/
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;

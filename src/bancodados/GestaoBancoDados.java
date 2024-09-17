@@ -13,10 +13,12 @@ public class GestaoBancoDados {
 		if (conex != null) {
 			System.out.println("Conectado com sucesso no Postgree.");
 			CriaTabela cr = new CriaTabela();
+			CriaTabelaCCEspecial cre = new CriaTabelaCCEspecial();
 			RemoverTabela rem = new RemoverTabela();
 			InsereDados ins = new InsereDados();
 			SelecionaDados sel = new SelecionaDados();
 			try {
+				cre.criarTabela(conex);
 				//rem.removerTabela(conex);
 				//cr.criarTabela(conex);
 				//ins.inserirDados(conex, 

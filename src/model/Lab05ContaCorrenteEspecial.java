@@ -33,6 +33,12 @@ public class Lab05ContaCorrenteEspecial
 		}
 		return 0;// deu errado. Faltou din din :).
 	}
-	
 
+	public double getLimiteCredito() {
+		return limiteCredito;
+	}
+
+	public void setLimiteCredito(double limiteCredito) {
+		this.limiteCredito = limiteCredito;
+	}
 }
