@@ -14,6 +14,14 @@ public class Lab05ContaCorrenteEspecial
 	
 
 
+	@Override
+	public String toString() {
+		System.out.println(super.toString());
+		return "Lab05ContaCorrenteEspecial [limiteCredito=" + limiteCredito + "]";
+	}
+
+
+
 	public Lab05ContaCorrenteEspecial 
 	(int ag, int ca, String nome, double saldo , 
 			double limite) {

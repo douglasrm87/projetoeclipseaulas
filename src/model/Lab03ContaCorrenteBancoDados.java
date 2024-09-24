@@ -18,6 +18,11 @@ public class Lab03ContaCorrenteBancoDados {
 		this.saldo = saldo;
 	}
 
+	@Override
+	public String toString() {
+		return "Lab03ContaCorrenteBancoDados [numAge=" + numAge + ", numConta=" + numConta + ", nome=" + nome
+				+ ", saldo=" + saldo + "]";
+	}
 	public int sacar(double v) {
 		if (this.saldo >= v) {
 			this.saldo = this.saldo - v;

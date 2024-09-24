@@ -19,15 +19,19 @@ import bancodados.SelecionaDadosCCEspecial;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
+import progparalela.VarrerContaNegativa;
 
-public class Lab06istema {
+public class Lab06istemaThread {
 	// criando o objeto myConta.
 
 	public static void main(String[] args) {
-		new Lab06istema().executarLab();
+		new Lab06istemaThread().executarLab();
 	}
 
 	private void executarLab() {
+		VarrerContaNegativa scanConta = new VarrerContaNegativa();
+		scanConta.start();
+
 		int opcao = 0;
 		while (opcao != 9) {
 			Scanner leia = new Scanner(System.in);
@@ -51,6 +55,10 @@ public class Lab06istema {
 			case 4:
 				execConsulta();
 				break;
+			case 9:
+				scanConta.interrupt();
+				System.exit(0);
+				break;
 			default:
 				break;
 			}
@@ -60,7 +68,7 @@ public class Lab06istema {
 	public void execCadastramento() {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef = null;
-		
+
 		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
@@ -89,9 +97,8 @@ public class Lab06istema {
 					ins.inserirDados(con, myContaRef);
 					InsereDadosCCEspecial insE = new InsereDadosCCEspecial();
 					// Foi necessário utilizar downcasting
-					insE.inserirDados(con, (Lab05ContaCorrenteEspecial)myContaRef);
-				}
-				else {
+					insE.inserirDados(con, (Lab05ContaCorrenteEspecial) myContaRef);
+				} else {
 					// Segunda forma
 					myContaRef = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
 					InsereDados ins = new InsereDados();
@@ -108,7 +115,7 @@ public class Lab06istema {
 	public void execSaque() {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef;
-		
+
 		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
@@ -119,25 +126,25 @@ public class Lab06istema {
 		System.out.println("Confirma saque(S/N):");
 		String saq = leia.next();
 		if (saq.equalsIgnoreCase("s")) {
-			Lab03ContaCorrenteBancoDados myConta;
-			if (agencia >= 5000)
-				myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
-			else
-				myConta = new Lab05ContaCorrenteEspecial(agencia, conta);
-			// Selecionar
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			SelecionaDados sel = new SelecionaDados();
 			Connection con = conexPost.conectarBanco();
-			// Faltando retornar os dados selecionados.
-			sel.selecionarDados(con, myConta);
 
-			System.out.println("Saldo atual: " + myConta.getSaldo());
-			
-			int ret = myConta.sacar(val);
-			
+			if (agencia >= 5000) {
+				myContaRef = new Lab05ContaCorrenteEspecial(agencia, conta);
+				sel.selecionarLimiteSaldo(con, (Lab05ContaCorrenteEspecial)myContaRef);
+				System.out.println("Limite atual: " + ((Lab05ContaCorrenteEspecial)myContaRef).getLimiteCredito());
+			} else {
+				myContaRef = new Lab03ContaCorrenteBancoDados(agencia, conta);
+				sel.selecionarDados(con, myContaRef);
+			}
+			System.out.println("Saldo atual: " + myContaRef.getSaldo());
+
+			int ret = myContaRef.sacar(val);
+
 			if (ret == 1) {
 				AtualizaDados atu = new AtualizaDados();
-				atu.atualizarDados(con, myConta);
+				atu.atualizarDados(con, myContaRef);
 				try {
 					con.close();
 				} catch (SQLException e) {
@@ -156,7 +163,7 @@ public class Lab06istema {
 	public void execDeposito() {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef;
-				
+
 		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
@@ -193,7 +200,7 @@ public class Lab06istema {
 	public void execConsulta() {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef;
-		
+
 		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
@@ -206,10 +213,10 @@ public class Lab06istema {
 		Connection con = conexPost.conectarBanco();
 		// Faltando retornar os dados selecionados.
 		sel.selecionarDados(con, myConta);
-		
+
 		SelecionaDadosCCEspecial selE = new SelecionaDadosCCEspecial();
 		selE.selecionarDados(con, new Lab05ContaCorrenteEspecial(agencia, conta));
-		
+
 		try {
 			con.close();
 		} catch (SQLException e) {
