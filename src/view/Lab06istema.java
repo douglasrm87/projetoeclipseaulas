@@ -58,6 +58,7 @@ public class Lab06istema {
 	}
 
 	public void execCadastramento() {
+		// Sétimo conceito: Polimorfismo
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef = null;
 		
@@ -83,6 +84,7 @@ public class Lab06istema {
 				ConexaoBancoDados conexPost = new ConexaoBancoDados();
 				Connection con = conexPost.conectarBanco();
 				if (agencia >= 5000) {
+					//Sétimo conceito: Polimorfismo
 					// Primeira forma - polimorfismo - muitas formas
 					myContaRef = new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo, limite);
 					InsereDados ins = new InsereDados();
@@ -92,6 +94,7 @@ public class Lab06istema {
 					insE.inserirDados(con, (Lab05ContaCorrenteEspecial)myContaRef);
 				}
 				else {
+					//Sétimo conceito: Polimorfismo
 					// Segunda forma
 					myContaRef = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
 					InsereDados ins = new InsereDados();

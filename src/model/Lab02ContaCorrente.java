@@ -1,11 +1,13 @@
 package model;
 
 public class Lab02ContaCorrente {
+	// Terceiro conceito: Atributos
 	private int numAge = 0; 
 	private int numConta;
 	private String nome;
 	private double saldo; 
 	
+	// Quarto conceito: Métodos
 	public int sacar(double v) {
 		if (this.saldo >= v) {
 			this.saldo = this.saldo - v;

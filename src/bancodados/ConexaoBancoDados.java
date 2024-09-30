@@ -14,6 +14,7 @@ public class ConexaoBancoDados {
             		"postgres", "12345");
             return con;// Se tudo bem retorna uma conexão.
         } catch (ClassNotFoundException e) {
+        	System.out.println("Driver informado esta incorreto ou JAR não está presente em seu ambiente.");
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();

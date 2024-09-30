@@ -12,6 +12,11 @@ public class Lab03ContaCorrente {
 	private String nome;
 	private double saldo;
 
+	// Construtor vazio. Método com mesmo nome da classe.
+//	public Lab03ContaCorrente() {
+//	}
+	// Quinto conceito: Métodos construtores
+	// Vazio ou com uma combinação de parâmetros
 	// Criar o método construtor - Pesquisa
 	public Lab03ContaCorrente(int ag, int cta) {
 		this.numAge = ag;

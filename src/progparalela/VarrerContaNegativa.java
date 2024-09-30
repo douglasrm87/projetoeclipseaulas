@@ -22,8 +22,8 @@ public class VarrerContaNegativa extends Thread {
 			List<Lab05ContaCorrenteEspecial> ret = s.selecionarContaNegativa(con);
 			if (ret.size() > 0) {
 				System.out.println("Conta negativa: " + ret);
+				System.out.println("\nTemos uma oportunidade de empréstimo entre em contato com seu gerente pelo telefone 0800909060.");
 			}
-
 		}
 	}
 

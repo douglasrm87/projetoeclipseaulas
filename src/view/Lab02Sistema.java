@@ -4,6 +4,7 @@ import java.util.Scanner;
 import model.Lab02ContaCorrente;
 public class Lab02Sistema {
 	// criando o objeto myConta. 
+	// Segundo conceito abordado: Objeto.
 	Lab02ContaCorrente myConta = new Lab02ContaCorrente();
 	
 	public static void main(String[] args) {

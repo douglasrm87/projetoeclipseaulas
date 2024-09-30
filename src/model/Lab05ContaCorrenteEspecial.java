@@ -1,7 +1,7 @@
 package model;
 
 // Lab05ContaCorrenteEspecial é uma especialização de Lab03ContaCorrenteBancoDados
-
+// Sexto conceito: Herança.
 public class Lab05ContaCorrenteEspecial 
 	extends Lab03ContaCorrenteBancoDados{
 

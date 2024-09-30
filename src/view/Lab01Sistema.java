@@ -1,7 +1,8 @@
+// Primeiro conceito foi o de Classe.
 package view;
 /*
 git add .
-git commit -m "lab05"
+git commit -m "Threads"
 git push -u origin main
 
 */
