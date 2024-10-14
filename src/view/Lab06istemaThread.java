@@ -31,7 +31,7 @@ public class Lab06istemaThread {
 	private void executarLab() {
 		VarrerContaNegativa scanConta = new VarrerContaNegativa();
 		scanConta.start();
-
+		
 		int opcao = 0;
 		while (opcao != 9) {
 			Scanner leia = new Scanner(System.in);
@@ -39,6 +39,7 @@ public class Lab06istemaThread {
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
 			System.out.println("4 - Imprimir");
+			System.out.println("5 - Interromper Varredura");
 			System.out.println("9 - Fim ");
 			System.out.println("Digite sua opção: ");
 			opcao = leia.nextInt();
@@ -54,6 +55,9 @@ public class Lab06istemaThread {
 				break;
 			case 4:
 				execConsulta();
+				break;
+			case 5:
+				scanConta.interrupt();
 				break;
 			case 9:
 				scanConta.interrupt();

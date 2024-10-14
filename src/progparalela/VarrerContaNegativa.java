@@ -13,7 +13,7 @@ public class VarrerContaNegativa extends Thread {
 			try {
 				Thread.sleep(15000);// 15 segundos
 			} catch (InterruptedException e) {
-				System.out.println("Sistema de varredura encerrado.");
+				System.out.println("\n*** Sistema de varredura encerrado.\n*** ");
 				break;
 			}
 			SelecionaDados s = new SelecionaDados();
@@ -21,7 +21,7 @@ public class VarrerContaNegativa extends Thread {
 			Connection con = conexPost.conectarBanco();
 			List<Lab05ContaCorrenteEspecial> ret = s.selecionarContaNegativa(con);
 			if (ret.size() > 0) {
-				System.out.println("Conta negativa: " + ret);
+				System.out.println("\n*** Conta negativa: ***\n" + ret);
 				System.out.println("\nTemos uma oportunidade de empréstimo entre em contato com seu gerente pelo telefone 0800909060.");
 			}
 		}
