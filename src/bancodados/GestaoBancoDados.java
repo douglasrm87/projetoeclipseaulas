@@ -3,8 +3,6 @@ package bancodados;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import model.Lab03ContaCorrente;
-import model.Lab03ContaCorrenteBancoDados;
 
 public class GestaoBancoDados {
 	public static void main(String[] args) {

@@ -1,19 +1,19 @@
 package view;
 import java.util.Scanner;
 // precisa importar pois esta em outro pacote.
-import model.Lab02ContaCorrente;
 import model.Lab03ContaCorrente;
 public class Lab03Sistema {
 	// criando o objeto myConta. 
 	
-	
+	Scanner leia = new Scanner(System.in);
 	public static void main(String[] args) {
 		new Lab03Sistema().executarLab();
 	}
 	private void executarLab() {
 		int opcao = 0;
+		
 		while (opcao != 9) {
-			Scanner leia = new Scanner(System.in);
+			
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -37,11 +37,10 @@ public class Lab03Sistema {
 			default:
 				break;
 			}
-			leia.close();
 		}
+		leia.close();
 	}
 	public void execCadastramento() {
- 		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia"); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta");
@@ -58,10 +57,8 @@ public class Lab03Sistema {
 			myConta.gravar();
 			System.out.println("Cadastro realizado com sucesso.");
 		}
-		leia.close();
 	}
 	public void execSaque() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -83,10 +80,8 @@ public class Lab03Sistema {
 				System.out.println("Saldo insuficiente.");
 			}
 		}
-		leia.close();
 	}
 	public void execDeposito() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -104,10 +99,8 @@ public class Lab03Sistema {
 			myConta.gravar();
 			System.out.println("Deposito realizado com sucesso.");
 		}
-		leia.close();
 	}
 	public void execConsulta() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -115,6 +108,5 @@ public class Lab03Sistema {
 		Lab03ContaCorrente myConta = 
 				new Lab03ContaCorrente(agencia,conta);
 		myConta.imprimir();
-		leia.close();
 	}
 }

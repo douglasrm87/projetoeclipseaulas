@@ -6,14 +6,15 @@ public class Lab02Sistema {
 	// criando o objeto myConta. 
 	// Segundo conceito abordado: Objeto.
 	Lab02ContaCorrente myConta = new Lab02ContaCorrente();
-	
+	Scanner leia = new Scanner(System.in);
 	public static void main(String[] args) {
 		new Lab02Sistema().executarLab();
 	}
 	private void executarLab() {
 		int opcao = 0;
+		
 		while (opcao != 9) {
-			Scanner leia = new Scanner(System.in);
+			
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -33,11 +34,11 @@ public class Lab02Sistema {
 			default:
 				break;
 			}
-			leia.close();
+			
 		}
+		leia.close();
 	}
 	public void execCadastramento() {
- 		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia"); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta");
@@ -55,10 +56,8 @@ public class Lab02Sistema {
 			this.myConta.setSaldo(saldo);
 			System.out.println("Cadastro realizado com sucesso.");
 		}
-		leia.close();
 	}
 	public void execSaque() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -78,7 +77,6 @@ public class Lab02Sistema {
 		}
 	}
 	public void execDeposito() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -91,7 +89,6 @@ public class Lab02Sistema {
 			this.myConta.deposito(val);
 			System.out.println("Deposito realizado com sucesso.");
 		}
-		leia.close();
 	}
 	public void execConsulta() {
 		this.myConta.imprimir();

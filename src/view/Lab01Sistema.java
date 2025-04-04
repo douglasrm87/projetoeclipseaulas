@@ -8,10 +8,12 @@ git push -u origin main
 */
 import java.util.Scanner;
 public class Lab01Sistema {
-	public static void main(String[] args) {
+		static Scanner leia = new Scanner(System.in);
+		public static void main(String[] args) {
 		int opcao = 0;
+		
 		while (opcao != 9) {
-			Scanner leia = new Scanner(System.in);
+			
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -31,11 +33,11 @@ public class Lab01Sistema {
 			default:
 				break;
 			}
-			leia.close();
+			
 		}
+		leia.close();
 	}
 	public static void execCadastramento() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia"); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta");
@@ -49,10 +51,8 @@ public class Lab01Sistema {
 		if (cad.equalsIgnoreCase("s")){
 			System.out.println("Cadastro realizado com sucesso.");
 		}
-		leia.close();
 	}
 	public static void execSaque() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -64,10 +64,8 @@ public class Lab01Sistema {
 		if (saq.equalsIgnoreCase("s")){
 			System.out.println("Saque realizado com sucesso.");
 		}
-		leia.close();
 	}
 	public static void execDeposito() {
-		Scanner leia = new Scanner (System.in);
 		System.out.println("Digite o Numero da Agencia: "); 
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -79,6 +77,5 @@ public class Lab01Sistema {
 		if (saq.equalsIgnoreCase("s")){
 			System.out.println("Deposito realizado com sucesso.");
 		}
-		leia.close();
 	}
 }

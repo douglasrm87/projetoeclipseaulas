@@ -1,6 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -98,7 +99,15 @@ public class Lab03ContaCorrente {
 		System.out.println("Nome:" + this.nome);
 		System.out.println("Saldo:" + this.saldo);
 	}
+	public boolean removerArquivo() {
+		File tArq1;
+		tArq1 = new File(numAge + "." + numConta + ".hist");
+		tArq1.delete();
+		tArq1 = new File(numAge + "." + numConta + ".dat");
+		tArq1.delete();
+		return true;
 
+	}
 	public int getNumAge() {
 		return numAge;
 	}

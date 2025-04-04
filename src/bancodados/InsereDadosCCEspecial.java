@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import model.Lab03ContaCorrente;
-import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
 
 public class InsereDadosCCEspecial {

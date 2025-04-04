@@ -22,11 +22,12 @@ public class Lab03SistemaBancoDados {
 	public static void main(String[] args) {
 		new Lab03SistemaBancoDados().executarLab();
 	}
-
+	Scanner leia = new Scanner(System.in);
 	private void executarLab() {
 		int opcao = 0;
+		
 		while (opcao != 9) {
-			Scanner leia = new Scanner(System.in);
+			
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -50,12 +51,12 @@ public class Lab03SistemaBancoDados {
 			default:
 				break;
 			}
-			leia.close();
+			
 		}
+		leia.close();
 	}
 
 	public void execCadastramento() {
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta");
@@ -82,11 +83,9 @@ public class Lab03SistemaBancoDados {
 
 			System.out.println("Cadastro realizado com sucesso.");
 		}
-		leia.close();
 	}
 
 	public void execSaque() {
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -112,7 +111,6 @@ public class Lab03SistemaBancoDados {
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -122,11 +120,9 @@ public class Lab03SistemaBancoDados {
 				System.out.println("Saldo insuficiente.");
 			}
 		}
-		leia.close();
 	}
 
 	public void execDeposito() {
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -152,16 +148,13 @@ public class Lab03SistemaBancoDados {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Deposito realizado com sucesso.");
-			leia.close();
 		}
 	}
 
 	public void execConsulta() {
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");

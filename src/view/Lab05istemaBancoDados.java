@@ -26,11 +26,12 @@ public class Lab05istemaBancoDados {
 	public static void main(String[] args) {
 		new Lab05istemaBancoDados().executarLab();
 	}
-
+	Scanner leia = new Scanner(System.in);
 	private void executarLab() {
 		int opcao = 0;
+
 		while (opcao != 9) {
-			Scanner leia = new Scanner(System.in);
+			
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -54,11 +55,11 @@ public class Lab05istemaBancoDados {
 			default:
 				break;
 			}
+			
 		}
 	}
 
 	public void execCadastramento() {
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -149,6 +150,7 @@ public class Lab05istemaBancoDados {
 				System.out.println("Saldo insuficiente.");
 			}
 		}
+		leia.close();
 	}
 
 	public void execDeposito() {
@@ -178,11 +180,11 @@ public class Lab05istemaBancoDados {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Deposito realizado com sucesso.");
 		}
+		leia.close();
 	}
 
 	public void execConsulta() {
@@ -208,5 +210,6 @@ public class Lab05istemaBancoDados {
 			e.printStackTrace();
 		}
 		System.out.println("Consulta realizada com sucesso.");
+		leia.close();
 	}
 }

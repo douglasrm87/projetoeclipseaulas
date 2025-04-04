@@ -26,11 +26,12 @@ public class Lab06istema {
 	public static void main(String[] args) {
 		new Lab06istema().executarLab();
 	}
-
+	Scanner leia = new Scanner(System.in);
 	private void executarLab() {
 		int opcao = 0;
+
 		while (opcao != 9) {
-			Scanner leia = new Scanner(System.in);
+			
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -55,14 +56,14 @@ public class Lab06istema {
 				break;
 			}
 		}
+		leia.close();
 	}
 
 	public void execCadastramento() {
 		// Sétimo conceito: Polimorfismo
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef = null;
-		
-		Scanner leia = new Scanner(System.in);
+	
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -111,8 +112,6 @@ public class Lab06istema {
 	public void execSaque() {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef;
-		
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -159,7 +158,6 @@ public class Lab06istema {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef;
 				
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
@@ -185,7 +183,6 @@ public class Lab06istema {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("Deposito realizado com sucesso.");
@@ -195,8 +192,6 @@ public class Lab06istema {
 	public void execConsulta() {
 		// Apenas uma referência para a classe
 		Lab03ContaCorrenteBancoDados myContaRef;
-		
-		Scanner leia = new Scanner(System.in);
 		System.out.println("Digite o Numero da Agencia: ");
 		int agencia = leia.nextInt();
 		System.out.println("Digite o Numero da Conta: ");
