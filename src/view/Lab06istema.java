@@ -144,7 +144,6 @@ public class Lab06istema {
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 

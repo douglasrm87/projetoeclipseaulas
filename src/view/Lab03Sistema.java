@@ -37,6 +37,7 @@ public class Lab03Sistema {
 			default:
 				break;
 			}
+			leia.close();
 		}
 	}
 	public void execCadastramento() {
@@ -57,6 +58,7 @@ public class Lab03Sistema {
 			myConta.gravar();
 			System.out.println("Cadastro realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public void execSaque() {
 		Scanner leia = new Scanner (System.in);
@@ -81,6 +83,7 @@ public class Lab03Sistema {
 				System.out.println("Saldo insuficiente.");
 			}
 		}
+		leia.close();
 	}
 	public void execDeposito() {
 		Scanner leia = new Scanner (System.in);
@@ -101,6 +104,7 @@ public class Lab03Sistema {
 			myConta.gravar();
 			System.out.println("Deposito realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public void execConsulta() {
 		Scanner leia = new Scanner (System.in);
@@ -111,5 +115,6 @@ public class Lab03Sistema {
 		Lab03ContaCorrente myConta = 
 				new Lab03ContaCorrente(agencia,conta);
 		myConta.imprimir();
+		leia.close();
 	}
 }

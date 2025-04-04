@@ -33,6 +33,7 @@ public class Lab02Sistema {
 			default:
 				break;
 			}
+			leia.close();
 		}
 	}
 	public void execCadastramento() {
@@ -54,6 +55,7 @@ public class Lab02Sistema {
 			this.myConta.setSaldo(saldo);
 			System.out.println("Cadastro realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public void execSaque() {
 		Scanner leia = new Scanner (System.in);
@@ -89,6 +91,7 @@ public class Lab02Sistema {
 			this.myConta.deposito(val);
 			System.out.println("Deposito realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public void execConsulta() {
 		this.myConta.imprimir();

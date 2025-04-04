@@ -43,6 +43,7 @@ public class Lab04Sistema {
 			default:
 				break;
 			}
+			leia.close();
 		}
 	}
 	public void execRemoverContaCorrente() {
@@ -63,6 +64,7 @@ public class Lab04Sistema {
 		int conta = leia.nextInt();
 		Lab04Historico hist = new Lab04Historico(agencia,conta);
 		hist.imprimir();
+		leia.close();
 		
 	}
 	public void execCadastramento() {
@@ -83,6 +85,7 @@ public class Lab04Sistema {
 			myConta.gravar();
 			System.out.println("Cadastro realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public void execSaque() {
 		Scanner leia = new Scanner (System.in);
@@ -108,6 +111,7 @@ public class Lab04Sistema {
 			else {
 				System.out.println("Saldo insuficiente.");
 			}
+			leia.close();
 		}
 	}
 	public void execDeposito() {
@@ -131,6 +135,7 @@ public class Lab04Sistema {
 			Lab04Historico hist = new Lab04Historico(agencia,conta);
 			hist.gravar(2, val);
 		}
+		leia.close();
 	}
 	public void execConsulta() {
 		Scanner leia = new Scanner (System.in);
@@ -141,5 +146,6 @@ public class Lab04Sistema {
 		Lab03ContaCorrente myConta = 
 				new Lab03ContaCorrente(agencia,conta);
 		myConta.imprimir();
+		leia.close();
 	}
 }

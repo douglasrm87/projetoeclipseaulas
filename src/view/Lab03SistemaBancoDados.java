@@ -50,6 +50,7 @@ public class Lab03SistemaBancoDados {
 			default:
 				break;
 			}
+			leia.close();
 		}
 	}
 
@@ -81,6 +82,7 @@ public class Lab03SistemaBancoDados {
 
 			System.out.println("Cadastro realizado com sucesso.");
 		}
+		leia.close();
 	}
 
 	public void execSaque() {
@@ -120,6 +122,7 @@ public class Lab03SistemaBancoDados {
 				System.out.println("Saldo insuficiente.");
 			}
 		}
+		leia.close();
 	}
 
 	public void execDeposito() {
@@ -153,6 +156,7 @@ public class Lab03SistemaBancoDados {
 				e.printStackTrace();
 			}
 			System.out.println("Deposito realizado com sucesso.");
+			leia.close();
 		}
 	}
 

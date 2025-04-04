@@ -31,6 +31,7 @@ public class Lab01Sistema {
 			default:
 				break;
 			}
+			leia.close();
 		}
 	}
 	public static void execCadastramento() {
@@ -48,6 +49,7 @@ public class Lab01Sistema {
 		if (cad.equalsIgnoreCase("s")){
 			System.out.println("Cadastro realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public static void execSaque() {
 		Scanner leia = new Scanner (System.in);
@@ -62,6 +64,7 @@ public class Lab01Sistema {
 		if (saq.equalsIgnoreCase("s")){
 			System.out.println("Saque realizado com sucesso.");
 		}
+		leia.close();
 	}
 	public static void execDeposito() {
 		Scanner leia = new Scanner (System.in);
@@ -76,5 +79,6 @@ public class Lab01Sistema {
 		if (saq.equalsIgnoreCase("s")){
 			System.out.println("Deposito realizado com sucesso.");
 		}
+		leia.close();
 	}
 }
