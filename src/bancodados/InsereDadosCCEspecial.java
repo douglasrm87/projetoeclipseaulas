@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Lab05ContaCorrenteEspecial;
+import model.Lab05ContaCorrenteEspecialBD;
 
 public class InsereDadosCCEspecial {
 
-	public void inserirDados(Connection con, Lab05ContaCorrenteEspecial banco) {
-		String ins = "insert into BancoEspecial ( agencia ,conta , limite )" + 
+	public void inserirDados(Connection con, Lab05ContaCorrenteEspecialBD banco) {
+		String ins = "insert into BancoEspecial ( agencia ,conta , limite )" +
 				" VALUES ( ? , ? , ? )";
 		try {
 			PreparedStatement stmt = con.prepareStatement(ins);

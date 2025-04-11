@@ -19,6 +19,7 @@ import bancodados.SelecionaDadosCCEspecial;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
+import model.Lab05ContaCorrenteEspecialBD;
 import progparalela.VarrerContaNegativa;
 
 public class Lab06istemaThread {
@@ -27,15 +28,17 @@ public class Lab06istemaThread {
 	public static void main(String[] args) {
 		new Lab06istemaThread().executarLab();
 	}
+
 	Scanner leia = new Scanner(System.in);
+
 	private void executarLab() {
 		VarrerContaNegativa scanConta = new VarrerContaNegativa();
 		scanConta.start();
-		
+
 		int opcao = 0;
 
 		while (opcao != 9) {
-			
+
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -45,27 +48,27 @@ public class Lab06istemaThread {
 			System.out.println("Digite sua opção: ");
 			opcao = leia.nextInt();
 			switch (opcao) {
-			case 1:
-				execCadastramento();
-				break;
-			case 2:
-				execSaque();
-				break;
-			case 3:
-				execDeposito();
-				break;
-			case 4:
-				execConsulta();
-				break;
-			case 5:
-				scanConta.interrupt();
-				break;
-			case 9:
-				scanConta.interrupt();
-				System.exit(0);
-				break;
-			default:
-				break;
+				case 1:
+					execCadastramento();
+					break;
+				case 2:
+					execSaque();
+					break;
+				case 3:
+					execDeposito();
+					break;
+				case 4:
+					execConsulta();
+					break;
+				case 5:
+					scanConta.interrupt();
+					break;
+				case 9:
+					scanConta.interrupt();
+					System.exit(0);
+					break;
+				default:
+					break;
 			}
 			leia.close();
 		}
@@ -96,12 +99,12 @@ public class Lab06istemaThread {
 				Connection con = conexPost.conectarBanco();
 				if (agencia >= 5000) {
 					// Primeira forma - polimorfismo - muitas formas
-					myContaRef = new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo, limite);
+					myContaRef = new Lab05ContaCorrenteEspecialBD(agencia, conta, nome, saldo, limite);
 					InsereDados ins = new InsereDados();
 					ins.inserirDados(con, myContaRef);
 					InsereDadosCCEspecial insE = new InsereDadosCCEspecial();
 					// Foi necessário utilizar downcasting
-					insE.inserirDados(con, (Lab05ContaCorrenteEspecial) myContaRef);
+					insE.inserirDados(con, (Lab05ContaCorrenteEspecialBD) myContaRef);
 				} else {
 					// Segunda forma
 					myContaRef = new Lab03ContaCorrenteBancoDados(agencia, conta, nome, saldo);
@@ -134,9 +137,9 @@ public class Lab06istemaThread {
 			Connection con = conexPost.conectarBanco();
 
 			if (agencia >= 5000) {
-				myContaRef = new Lab05ContaCorrenteEspecial(agencia, conta);
-				sel.selecionarLimiteSaldo(con, (Lab05ContaCorrenteEspecial)myContaRef);
-				System.out.println("Limite atual: " + ((Lab05ContaCorrenteEspecial)myContaRef).getLimiteCredito());
+				myContaRef = new Lab05ContaCorrenteEspecialBD(agencia, conta);
+				sel.selecionarLimiteSaldo(con, (Lab05ContaCorrenteEspecialBD) myContaRef);
+				System.out.println("Limite atual: " + ((Lab05ContaCorrenteEspecialBD) myContaRef).getLimiteCredito());
 			} else {
 				myContaRef = new Lab03ContaCorrenteBancoDados(agencia, conta);
 				sel.selecionarDados(con, myContaRef);

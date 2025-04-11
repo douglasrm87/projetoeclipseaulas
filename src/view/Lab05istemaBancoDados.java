@@ -19,6 +19,7 @@ import bancodados.SelecionaDadosCCEspecial;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
+import model.Lab05ContaCorrenteEspecialBD;
 
 public class Lab05istemaBancoDados {
 	// criando o objeto myConta.
@@ -26,12 +27,14 @@ public class Lab05istemaBancoDados {
 	public static void main(String[] args) {
 		new Lab05istemaBancoDados().executarLab();
 	}
+
 	Scanner leia = new Scanner(System.in);
+
 	private void executarLab() {
 		int opcao = 0;
 
 		while (opcao != 9) {
-			
+
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
@@ -40,22 +43,22 @@ public class Lab05istemaBancoDados {
 			System.out.println("Digite sua opção: ");
 			opcao = leia.nextInt();
 			switch (opcao) {
-			case 1:
-				execCadastramento();
-				break;
-			case 2:
-				execSaque();
-				break;
-			case 3:
-				execDeposito();
-				break;
-			case 4:
-				execConsulta();
-				break;
-			default:
-				break;
+				case 1:
+					execCadastramento();
+					break;
+				case 2:
+					execSaque();
+					break;
+				case 3:
+					execDeposito();
+					break;
+				case 4:
+					execConsulta();
+					break;
+				default:
+					break;
 			}
-			
+
 		}
 	}
 
@@ -91,7 +94,8 @@ public class Lab05istemaBancoDados {
 				e.printStackTrace();
 			}
 			if (agencia >= 5000) {
-				Lab05ContaCorrenteEspecial cEsp = new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo, limite);
+				Lab05ContaCorrenteEspecialBD cEsp = new Lab05ContaCorrenteEspecialBD(agencia, conta, nome, saldo,
+						limite);
 				ConexaoBancoDados conexPostesp = new ConexaoBancoDados();
 				InsereDadosCCEspecial insE = new InsereDadosCCEspecial();
 				Connection conE = conexPostesp.conectarBanco();
@@ -123,7 +127,7 @@ public class Lab05istemaBancoDados {
 			if (agencia >= 5000)
 				myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
 			else
-				myConta = new Lab05ContaCorrenteEspecial(agencia, conta);
+				myConta = new Lab05ContaCorrenteEspecialBD(agencia, conta);
 			// Selecionar
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			SelecionaDados sel = new SelecionaDados();
@@ -132,9 +136,9 @@ public class Lab05istemaBancoDados {
 			sel.selecionarDados(con, myConta);
 
 			System.out.println("Saldo atual: " + myConta.getSaldo());
-			
+
 			int ret = myConta.sacar(val);
-			
+
 			if (ret == 1) {
 				AtualizaDados atu = new AtualizaDados();
 				atu.atualizarDados(con, myConta);
@@ -200,10 +204,10 @@ public class Lab05istemaBancoDados {
 		Connection con = conexPost.conectarBanco();
 		// Faltando retornar os dados selecionados.
 		sel.selecionarDados(con, myConta);
-		
+
 		SelecionaDadosCCEspecial selE = new SelecionaDadosCCEspecial();
 		selE.selecionarDados(con, new Lab05ContaCorrenteEspecial(agencia, conta));
-		
+
 		try {
 			con.close();
 		} catch (SQLException e) {

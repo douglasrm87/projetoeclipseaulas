@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
+import model.Lab05ContaCorrenteEspecialBD;
 
 public class SelecionaDados {
 
@@ -59,7 +60,7 @@ public class SelecionaDados {
 		}
 		return ccLista;
 	}
-	public void selecionarLimiteSaldo(Connection con, Lab05ContaCorrenteEspecial banco) {
+	public void selecionarLimiteSaldo(Connection con, Lab05ContaCorrenteEspecialBD banco) {
 		String ins = " Select  b.saldo , be.limite" + 
 				 " From Banco b , bancoespecial be where b.agencia = ? and b.conta = ? "
 				+" and b.agencia = be.agencia and b.conta = be.conta";

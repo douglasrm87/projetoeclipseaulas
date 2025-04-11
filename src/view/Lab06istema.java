@@ -19,6 +19,7 @@ import bancodados.SelecionaDadosCCEspecial;
 // precisa importar pois esta em outro pacote.
 import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
+import model.Lab05ContaCorrenteEspecialBD;
 
 public class Lab06istema {
 	// criando o objeto myConta.
@@ -87,12 +88,12 @@ public class Lab06istema {
 				if (agencia >= 5000) {
 					//Sétimo conceito: Polimorfismo
 					// Primeira forma - polimorfismo - muitas formas
-					myContaRef = new Lab05ContaCorrenteEspecial(agencia, conta, nome, saldo, limite);
+					myContaRef = new Lab05ContaCorrenteEspecialBD(agencia, conta, nome, saldo, limite);
 					InsereDados ins = new InsereDados();
 					ins.inserirDados(con, myContaRef);
 					InsereDadosCCEspecial insE = new InsereDadosCCEspecial();
 					// Foi necessário utilizar downcasting
-					insE.inserirDados(con, (Lab05ContaCorrenteEspecial)myContaRef);
+					insE.inserirDados(con, (Lab05ContaCorrenteEspecialBD)myContaRef);
 				}
 				else {
 					//Sétimo conceito: Polimorfismo
@@ -125,7 +126,7 @@ public class Lab06istema {
 			if (agencia >= 5000)
 				myConta = new Lab03ContaCorrenteBancoDados(agencia, conta);
 			else
-				myConta = new Lab05ContaCorrenteEspecial(agencia, conta);
+				myConta = new Lab05ContaCorrenteEspecialBD(agencia, conta);
 			// Selecionar
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			SelecionaDados sel = new SelecionaDados();

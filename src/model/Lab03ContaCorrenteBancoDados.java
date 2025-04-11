@@ -1,5 +1,7 @@
 package model;
 
+import java.io.File;
+
 public class Lab03ContaCorrenteBancoDados {
 	private int numAge = 0;
 	private int numConta;
@@ -11,7 +13,16 @@ public class Lab03ContaCorrenteBancoDados {
 		this.numAge = ag;
 		this.numConta = cta;
 	}
-	public Lab03ContaCorrenteBancoDados (int ag,int ca,String nome,double saldo) {
+
+	public void imprimir() {
+		System.out.println("Imprimindo seu Extrato:");
+		System.out.println("Agencia:" + this.numAge);
+		System.out.println("Conta:" + this.numConta);
+		System.out.println("Nome:" + this.nome);
+		System.out.println("Saldo:" + this.saldo);
+	}
+
+	public Lab03ContaCorrenteBancoDados(int ag, int ca, String nome, double saldo) {
 		this.numAge = ag;
 		this.numConta = ca;
 		this.nome = nome;
@@ -23,6 +34,7 @@ public class Lab03ContaCorrenteBancoDados {
 		return "Lab03ContaCorrenteBancoDados [numAge=" + numAge + ", numConta=" + numConta + ", nome=" + nome
 				+ ", saldo=" + saldo + "]";
 	}
+
 	public int sacar(double v) {
 		if (this.saldo >= v) {
 			this.saldo = this.saldo - v;
@@ -66,5 +78,13 @@ public class Lab03ContaCorrenteBancoDados {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
+	public boolean removerArquivo() {
+		File tArq1;
+		tArq1 = new File(numAge + "." + numConta + ".hist");
+		tArq1.delete();
+		tArq1 = new File(numAge + "." + numConta + ".dat");
+		tArq1.delete();
+		return true;
 
+	}
 }
