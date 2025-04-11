@@ -1,9 +1,10 @@
 package model;
 
+import java.io.File;
+
 // Lab05ContaCorrenteEspecial é uma especialização de Lab03ContaCorrenteBancoDados
 // Sexto conceito: Herança.
-public class Lab05ContaCorrenteEspecial 
-	extends Lab03ContaCorrenteBancoDados{
+public class Lab05ContaCorrenteEspecial  extends Lab03ContaCorrente{
 
 	private double limiteCredito = 0.0;
 	
@@ -19,11 +20,15 @@ public class Lab05ContaCorrenteEspecial
 		System.out.println(super.toString());
 		return "Lab05ContaCorrenteEspecial [limiteCredito=" + limiteCredito + "]";
 	}
+    
+	@Override
+	public void imprimir() {
+		super.imprimir();
+		System.out.println("Limite de Crédito: " + this.limiteCredito);
+	}
 
 
-
-	public Lab05ContaCorrenteEspecial 
-	(int ag, int ca, String nome, double saldo , 
+	public Lab05ContaCorrenteEspecial (int ag, int ca, String nome, double saldo , 
 			double limite) {
 		super(ag, ca, nome, saldo);
 		this.limiteCredito = limite;
@@ -49,4 +54,13 @@ public class Lab05ContaCorrenteEspecial
 	public void setLimiteCredito(double limiteCredito) {
 		this.limiteCredito = limiteCredito;
 	}
+	public boolean removerArquivo ()  { 
+          super.removerArquivo (); 
+          File      tArq1; 
+          tArq1 = new File (this.getNumAge() + "." + this.getNumConta() + ".esp"); 
+          tArq1.delete(); 
+          return true; 
+    } 
+	
+	
 }
