@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Lab05SistemaSwing",
+        "request": "launch",
+        "mainClass": "viewswing.Lab05SistemaSwing",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "Executar Lab05SistemaSwing",
+        "request": "launch",
+        "mainClass": "viewswing.Lab05SistemaSwing",
+        "projectName": "Lab05SistemaSwing",
+        "vmArgs": "--add-modules java.desktop"
+      }
+    ]
+  }
