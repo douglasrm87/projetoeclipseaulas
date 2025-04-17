@@ -3,6 +3,28 @@
     "configurations": [
       {
         "type": "java",
+        "name": "Lab01Sistema",
+        "request": "launch",
+        "mainClass": "view.Lab01Sistema",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "lab05SistemaSwing",
+        "request": "launch",
+        "mainClass": "view.lab05SistemaSwing",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "Lab05SistemaJFX",
+        "request": "launch",
+        "mainClass": "viewswing.Lab05SistemaJFX",
+        "projectName": "projetoeclipseaulas",
+        "vmArgs": "--add-modules javafx.controls,javafx.fxml"
+      },
+      {
+        "type": "java",
         "name": "Lab05SistemaSwing",
         "request": "launch",
         "mainClass": "viewswing.Lab05SistemaSwing",

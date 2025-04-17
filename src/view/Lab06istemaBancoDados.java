@@ -21,11 +21,11 @@ import model.Lab03ContaCorrenteBancoDados;
 import model.Lab05ContaCorrenteEspecial;
 import model.Lab05ContaCorrenteEspecialBD;
 
-public class Lab06istema {
+public class Lab06istemaBancoDados	 {
 	// criando o objeto myConta.
 
 	public static void main(String[] args) {
-		new Lab06istema().executarLab();
+		new Lab06istemaBancoDados().executarLab();
 	}
 	Scanner leia = new Scanner(System.in);
 	private void executarLab() {
