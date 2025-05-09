@@ -3,6 +3,20 @@
     "configurations": [
       {
         "type": "java",
+        "name": "Principal",
+        "request": "launch",
+        "mainClass": "agrupamento.Principal",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "Lab06istemaBancoDados",
+        "request": "launch",
+        "mainClass": "view.Lab06istemaBancoDados",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "Lab01Sistema",
         "request": "launch",
         "mainClass": "view.Lab01Sistema",

@@ -1,7 +1,5 @@
 package model;
 
-import java.io.File;
-
 public class Lab03ContaCorrenteBancoDados {
 	private int numAge = 0;
 	private int numConta;
@@ -77,14 +75,5 @@ public class Lab03ContaCorrenteBancoDados {
 
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
-	}
-	public boolean removerArquivo() {
-		File tArq1;
-		tArq1 = new File(numAge + "." + numConta + ".hist");
-		tArq1.delete();
-		tArq1 = new File(numAge + "." + numConta + ".dat");
-		tArq1.delete();
-		return true;
-
 	}
 }

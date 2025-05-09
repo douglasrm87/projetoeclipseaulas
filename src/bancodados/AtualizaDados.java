@@ -20,7 +20,7 @@ public class AtualizaDados {
 			System.out.println("Dados atualizados com sucesso.");
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println("Probleams na atualização da tabela.");
+			System.out.println("Problemas na atualização da tabela.");
 			System.out.println("Mensagem: " + e.getMessage());
 			System.out.println("ID: " + e.getSQLState());
 		}

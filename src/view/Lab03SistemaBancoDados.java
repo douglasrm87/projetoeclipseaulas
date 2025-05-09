@@ -72,7 +72,9 @@ public class Lab03SistemaBancoDados {
 			// Gravar - Inserir
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			InsereDados ins = new InsereDados();
+			// 1  - Conectar com o banco de dados
 			Connection con = conexPost.conectarBanco();
+			// 2 - Inserir os dados no banco de dados
 			ins.inserirDados(con, myConta);
 			try {
 				con.close();
@@ -99,14 +101,16 @@ public class Lab03SistemaBancoDados {
 			// Selecionar
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			SelecionaDados sel = new SelecionaDados();
+			// 1  - Conectar com o banco de dados
 			Connection con = conexPost.conectarBanco();
-			// Faltando retornar os dados selecionados.
+			// 2 - Selecionar os dados no banco de dados
 			sel.selecionarDados(con, myConta);
 
 			System.out.println("Saldo atual: " + myConta.getSaldo());
 			int ret = myConta.sacar(val);
 			if (ret == 1) {
 				AtualizaDados atu = new AtualizaDados();
+				//3 - Atualizar os dados no banco de dados
 				atu.atualizarDados(con, myConta);
 				try {
 					con.close();
@@ -136,14 +140,16 @@ public class Lab03SistemaBancoDados {
 			// Selecionar
 			ConexaoBancoDados conexPost = new ConexaoBancoDados();
 			SelecionaDados sel = new SelecionaDados();
+			// 1  - Conectar com o banco de dados
 			Connection con = conexPost.conectarBanco();
-			// Faltando retornar os dados selecionados.
+			// 2 - Selecionar os dados no banco de dados
 			sel.selecionarDados(con, myConta);
 			System.out.println("Saldo atual: " + myConta.getSaldo());
 
 			myConta.deposito(val);
 			// Atualizar - Update
 			AtualizaDados atu = new AtualizaDados();
+			//3 - Atualizar os dados no banco de dados
 			atu.atualizarDados(con, myConta);
 			try {
 				con.close();
@@ -163,8 +169,9 @@ public class Lab03SistemaBancoDados {
 		// Selecionar
 		ConexaoBancoDados conexPost = new ConexaoBancoDados();
 		SelecionaDados sel = new SelecionaDados();
+		// 1  - Conectar com o banco de dados
 		Connection con = conexPost.conectarBanco();
-		// Faltando retornar os dados selecionados.
+		// 2 - Selecionar os dados no banco de dados
 		sel.selecionarDados(con, myConta);
 	}
 }
