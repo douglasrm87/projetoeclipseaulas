@@ -32,6 +32,8 @@ public class Lab06istemaThread {
 	Scanner leia = new Scanner(System.in);
 
 	private void executarLab() {
+		// Iniciando a Thread para varredura de contas negativas.
+		// A classe VarrerContaNegativa é uma Thread.
 		VarrerContaNegativa scanConta = new VarrerContaNegativa();
 		scanConta.start();
 
@@ -42,8 +44,9 @@ public class Lab06istemaThread {
 			System.out.println("1 - Cadastramento");
 			System.out.println("2 - Saque");
 			System.out.println("3 - Deposito");
-			System.out.println("4 - Imprimir");
-			System.out.println("5 - Interromper Varredura");
+			System.out.println("4 - Extrato");
+			// Nova opção
+			System.out.println("5 - Interromper Oferta de Crédito");
 			System.out.println("9 - Fim ");
 			System.out.println("Digite sua opção: ");
 			opcao = leia.nextInt();
