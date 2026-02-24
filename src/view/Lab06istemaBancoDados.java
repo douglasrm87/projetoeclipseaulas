@@ -79,8 +79,7 @@ public class Lab06istemaBancoDados	 {
 			System.out.println("Digite o limite: ");
 			limite = leia.nextDouble();
 		}
-		System.out.println("C1
-		onfirma cadastramento(S/N):");
+		System.out.println("Confirma cadastramento(S/N):");
 		String cad = leia.next();
 		if (cad.equalsIgnoreCase("s")) {
 			try {
