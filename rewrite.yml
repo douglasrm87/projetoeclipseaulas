@@ -1,0 +1,7 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: Java21Upgrade
+displayName: Upgrade Java to 21
+description: Upgrade Java source code to Java 21
+recipeList:
+  - org.openrewrite.java.migrate.UpgradeToJava21
