@@ -8,6 +8,7 @@ git push -u origin main
 */
 import java.util.Scanner;
 public class Lab01Sistema {
+	// teste de commit
 		static Scanner leia = new Scanner(System.in);
 		public static void main(String[] args) {
 		int opcao = 0;
