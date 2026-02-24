@@ -3,6 +3,27 @@
     "configurations": [
       {
         "type": "java",
+        "name": "CopilotClasse",
+        "request": "launch",
+        "mainClass": "aula01.CopilotClasse",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "JogoVelha",
+        "request": "launch",
+        "mainClass": "aula01.JogoVelha",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "Aluno",
+        "request": "launch",
+        "mainClass": "aula01.Aluno",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "Principal",
         "request": "launch",
         "mainClass": "agrupamento.Principal",
