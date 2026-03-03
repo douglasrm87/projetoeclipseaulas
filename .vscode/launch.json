@@ -3,6 +3,34 @@
     "configurations": [
       {
         "type": "java",
+        "name": "TelaUsuario",
+        "request": "launch",
+        "mainClass": "wordzapper.model.view.TelaUsuario",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "ServidorWebSimples",
+        "request": "launch",
+        "mainClass": "aula01.ServidorWebSimples",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "ProgramaBasicoGUI",
+        "request": "launch",
+        "mainClass": "aula01.ProgramaBasicoGUI",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "Aluno",
+        "request": "launch",
+        "mainClass": "aula01.Aluno",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "Principal",
         "request": "launch",
         "mainClass": "agrupamento.Principal",
