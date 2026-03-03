@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "TelaUsuario",
+        "request": "launch",
+        "mainClass": "gestaobiblioteca.view.TelaUsuario",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "CopilotClasse",
         "request": "launch",
         "mainClass": "aula01.CopilotClasse",
