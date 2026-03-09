@@ -1,5 +1,5 @@
 // Primeiro conceito foi o de Classe.
-package view;
+package gestaobiblioteca.view;
 /*
 git add .
 git commit -m "Threads"

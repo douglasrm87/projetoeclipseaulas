@@ -1,5 +1,7 @@
 package wordzapper.model.view;
 
+import java.util.Scanner;
+
 import wordzapper.model.Usuario;
 
 public class TelaUsuario {
@@ -7,7 +9,10 @@ public class TelaUsuario {
         System.out.println("Bem-vindo à Tela do Usuário!");
 
         Usuario usuario1 = new Usuario();
-        usuario1.setId(-1);
+        Scanner captura = new Scanner(System.in);
+        System.out.print("Digite o ID do usuário: ");
+        int id = captura.nextInt();
+        usuario1.setId(id); 
         System.out.println("ID do usuário: " + usuario1.getId());
     }
 }

@@ -4,11 +4,13 @@ package viewswing;
 //mvn compile
 
 import javax.swing.*;
+
+import gestaobiblioteca.model.Lab03ContaCorrente;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecial;
+
 import java.awt.*;        
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.Lab03ContaCorrente;
-import model.Lab05ContaCorrenteEspecial;
                                                                           
 
 public class Lab05SistemaSwing extends JFrame {

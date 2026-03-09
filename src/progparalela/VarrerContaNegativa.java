@@ -5,7 +5,7 @@ import java.util.List;
 
 import bancodados.ConexaoBancoDados;
 import bancodados.SelecionaDados;
-import model.Lab05ContaCorrenteEspecial;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecial;
 
 public class VarrerContaNegativa extends Thread {
 	public void run() {

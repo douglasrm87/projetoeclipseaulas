@@ -1,4 +1,4 @@
-package view;
+package gestaobiblioteca.view;
 
 /*
 git add .
@@ -16,10 +16,9 @@ import bancodados.InsereDados;
 import bancodados.InsereDadosCCEspecial;
 import bancodados.SelecionaDados;
 import bancodados.SelecionaDadosCCEspecial;
-// precisa importar pois esta em outro pacote.
-import model.Lab03ContaCorrenteBancoDados;
-import model.Lab05ContaCorrenteEspecial;
-import model.Lab05ContaCorrenteEspecialBD;
+import gestaobiblioteca.model.Lab03ContaCorrenteBancoDados;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecial;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecialBD;
 
 public class Lab05istemaBancoDados {
 	// criando o objeto myConta.

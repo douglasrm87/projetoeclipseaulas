@@ -1,4 +1,4 @@
-package model;
+package gestaobiblioteca.model;
 
 public class Lab02ContaCorrente {
 	// Terceiro conceito: Atributos

@@ -1,10 +1,10 @@
-package view;
+package gestaobiblioteca.view;
 
 import java.util.Scanner;
 
-import model.Lab03ContaCorrente;
-import model.Lab04Historico;
-import model.Lab05ContaCorrenteEspecial;
+import gestaobiblioteca.model.Lab03ContaCorrente;
+import gestaobiblioteca.model.Lab04Historico;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecial;
 public class Lab05Sistema {
 	Scanner leia = new Scanner(System.in);
 	public static void main(String[] args) {

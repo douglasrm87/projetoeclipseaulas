@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Lab05ContaCorrenteEspecial;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecial;
 
 public class SelecionaDadosCCEspecial {
 

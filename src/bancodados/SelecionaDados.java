@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Lab03ContaCorrenteBancoDados;
-import model.Lab05ContaCorrenteEspecial;
-import model.Lab05ContaCorrenteEspecialBD;
+
+import gestaobiblioteca.model.Lab03ContaCorrenteBancoDados;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecial;
+import gestaobiblioteca.model.Lab05ContaCorrenteEspecialBD;
 
 public class SelecionaDados {
 

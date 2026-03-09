@@ -1,4 +1,4 @@
-package model;
+package gestaobiblioteca.model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

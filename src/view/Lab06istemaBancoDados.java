@@ -1,4 +1,4 @@
-package view;
+package gestaobiblioteca.view;
 
 /*
 git add .

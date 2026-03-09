@@ -1,4 +1,4 @@
-package model;
+package gestaobiblioteca.model;
 
 public class Lab03ContaCorrenteBancoDados {
 	private int numAge = 0;

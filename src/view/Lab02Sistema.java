@@ -1,7 +1,7 @@
 package view;
 import java.util.Scanner;
-// precisa importar pois esta em outro pacote.
-import model.Lab02ContaCorrente;
+
+import gestaobiblioteca.model.Lab02ContaCorrente;
 public class Lab02Sistema {
 	// criando o objeto myConta. 
 	// Segundo conceito abordado: Objeto.

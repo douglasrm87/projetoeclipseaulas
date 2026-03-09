@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import model.Lab03ContaCorrenteBancoDados;
+import gestaobiblioteca.model.Lab03ContaCorrenteBancoDados;
 
 public class InsereDados {
 
