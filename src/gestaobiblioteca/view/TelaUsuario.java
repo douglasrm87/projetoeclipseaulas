@@ -1,8 +1,8 @@
-package wordzapper.model.view;
+package gestaobiblioteca.view;
 
 import java.util.Scanner;
 
-import wordzapper.model.Usuario;
+import gestaobiblioteca.model.Usuario;
 
 public class TelaUsuario {
     public static void main(String[] args) {
