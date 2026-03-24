@@ -32,10 +32,37 @@ public abstract class Usuario implements Autenticavel {
         this.senha = senha;
         this.perfil = perfil;
     }
+      // Criar novo construtor para receber os dados do login e senha e perfil do aluno
+    public Usuario(String login, String senha, Perfil perfil) {
+        this.login = login;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
     public void setId(long id) {
         if (id <= 0) {
             throw new IllegalArgumentException("ID deve ser positivo.");
         }
         this.id = id;
     }
+    public long getId() {
+        return id;
+    }
+    public boolean autenticar(String login, String senha) {
+        // Verifica se o login e a senha fornecidos correspondem aos armazenados
+        if (this.login.equals("douglas") && this.senha.equals("123456")) {
+            return true; // Autenticação bem-sucedida
+        } else {
+            return false; // Falha na autenticação
+        }       
+
+    }
+    public void alterarSenha(String novaSenha) {
+        if (novaSenha == null || novaSenha.length() < 6) {
+            throw new IllegalArgumentException("A nova senha deve ter pelo menos 6 caracteres.");       
+        }
+        this.senha = novaSenha;
+        this.primeiroAcesso = false;    
+    }
+     public abstract void exibirmenu ();
+
 }

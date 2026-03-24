@@ -12,5 +12,15 @@ public class Administrador extends Usuario {
         super(id, nome, email, login, senha, Perfil.ADMIN);
          
     }
+    public Administrador(String login, String senha, Perfil perfil) {
+        super(login, senha, perfil);
+    }
+    public void exibirmenu (){
+        System.out.println("Menu do Administrador");
+        System.out.println("1. Gerenciar Usuários");
+        System.out.println("2. Gerenciar Empréstimos");
+        System.out.println("3. Gerenciar Materiais");
+        System.out.println("4. Sair");
+    }
     
 }
