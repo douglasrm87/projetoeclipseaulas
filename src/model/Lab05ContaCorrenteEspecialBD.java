@@ -50,7 +50,7 @@ public class Lab05ContaCorrenteEspecialBD extends Lab03ContaCorrenteBancoDados {
 	}
 
 	public boolean removerArquivo() {
-		super.removerArquivo();
+		//super.removerArquivo();
 		File tArq1;
 		tArq1 = new File(this.getNumAge() + "." + this.getNumConta() + ".esp");
 		tArq1.delete();

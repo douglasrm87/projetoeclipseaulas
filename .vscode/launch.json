@@ -3,6 +3,20 @@
     "configurations": [
       {
         "type": "java",
+        "name": "FilaMain",
+        "request": "launch",
+        "mainClass": "fila.FilaMain",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "PilhaMain",
+        "request": "launch",
+        "mainClass": "pilha.PilhaMain",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "Teste",
         "request": "launch",
         "mainClass": "gestaobiblioteca.Teste",
