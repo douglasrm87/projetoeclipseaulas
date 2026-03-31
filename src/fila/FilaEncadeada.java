@@ -12,9 +12,10 @@ public class FilaEncadeada {
     public void inserir(int valor) {
         No novoNo = new No(valor);
         if (isEmpty()) {
-            topo = novoNo;
+            topo = novoNo; // Se a fila estiver vazia, o novo nó se torna o topo.
         } else {
-            No temp = topo;
+            // Salva o valor do topo para navegar até o final da fila.
+            No temp = topo;  
             // Navega na fila até o último nó.
             while (temp.getProximo() != null) {
                 temp = temp.getProximo();
