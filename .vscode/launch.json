@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "J10SistemaDukeStore",
+        "request": "launch",
+        "mainClass": "dukerevisao.J10SistemaDukeStore",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "FilaMain",
         "request": "launch",
         "mainClass": "fila.FilaMain",
