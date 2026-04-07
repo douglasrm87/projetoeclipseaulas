@@ -6,4 +6,3 @@ public class J01PagamentoException extends Exception {
         super(mensagem);
     }
 }
-

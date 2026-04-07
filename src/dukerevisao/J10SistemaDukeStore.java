@@ -22,6 +22,18 @@ public class J10SistemaDukeStore {
         J03CartaoCredito cartao = new J03CartaoCredito("1234-5678-9012-3456");
         // carrinho contem o produto, o pedido tem o carrinho, e o pedido fecha usando o cartao. O pedido não sabe os detalhes do cartao, apenas chama o metodo processar() da interface.
         pedido.fecharPedido(cartao, carrinho.calcularTotal());
+
+         // Uso de classe anônima ou Lambda para simular o Polimorfismo da Interface  
+   
+        pedido.fecharPedido(valor -> {  
+            System.out.println("--- LOG DE OPERAÇÃO ---");
+            System.out.println("Pagamento em dinheiro de R$" + valor);
+        }, carrinho.calcularTotal());
+ 
+        // 3. Teste com PIX (Polimorfismo)
+        J03PIX pix = new J03PIX("pix@duke.com");
+        pedido.fecharPedido(pix, carrinho.calcularTotal());
+
    }
   
 }
