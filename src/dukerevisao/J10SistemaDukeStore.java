@@ -10,23 +10,18 @@ Encapsulamento: Note que os detalhes do cartão (numeroCartao) ficam escondidos 
 */
 public class J10SistemaDukeStore {
    public static void main(String[] args) {
-       J09Pedido meuPedido = new J09Pedido(null);
-        double valorTotal = 150.00;
+        J07Carrinho carrinho = new J07Carrinho();
+        carrinho.adicionarItem(new J06Camisa("Java 25 Anos", 120.0, "M"));
+        // 1. Setup de Produtos (Herança e Abstração)
+        J05Produto camisaVermelha = new J06Camisa("Camisa Duke Java", 89.90, "G");
+        carrinho.adicionarItem(camisaVermelha);
 
-        // 1. Usando a CLASSE CONCRETA (Objeto da classe CartaoCredito)
-        // Útil quando a lógica é complexa e precisa ser reutilizada.
-        J02MetodoPagamento cartao = new J03CartaoCredito("1234-5678-9012-3456");
-        meuPedido.fecharPedido(cartao, valorTotal);
+        J09Pedido pedido = new J09Pedido(carrinho);
 
-        System.out.println("---");
-
-        // 2. Usando LAMBDA (Implementação "on-the-fly")
-        // Útil para lógicas rápidas ou quando não queremos criar um novo arquivo .java
-        // O Java entende que este trecho SUBSTITUI a criação de uma classe 'Pix'.
-        meuPedido.fecharPedido(valor -> {
-            System.out.println("📱 Gerando QR Code Pix para R$" + valor);
-            System.out.println("⏳ Aguardando confirmação do Banco...");
-        }, valorTotal);
+        // 2. Teste com Cartão de Crédito (Polimorfismo)
+        J03CartaoCredito cartao = new J03CartaoCredito("1234-5678-9012-3456");
+        // carrinho contem o produto, o pedido tem o carrinho, e o pedido fecha usando o cartao. O pedido não sabe os detalhes do cartao, apenas chama o metodo processar() da interface.
+        pedido.fecharPedido(cartao, carrinho.calcularTotal());
    }
   
 }
