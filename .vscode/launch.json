@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "RestauranteApp",
+        "request": "launch",
+        "mainClass": "restauranterevisaooo.RestauranteApp",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "J10SistemaDukeStore",
         "request": "launch",
         "mainClass": "dukerevisao.J10SistemaDukeStore",
