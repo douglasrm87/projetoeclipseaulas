@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "RestauranteMain",
+        "request": "launch",
+        "mainClass": "restauranterevisaooo.RestauranteMain",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "RestauranteApp",
         "request": "launch",
         "mainClass": "restauranterevisaooo.RestauranteApp",

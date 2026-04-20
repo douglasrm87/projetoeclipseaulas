@@ -1,0 +1,224 @@
+@startuml SequenceDiagram
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam sequenceActorBackgroundColor #FFFFFF
+skinparam sequenceActorBorderColor #333333
+
+' ═══════════════════════════════════════════════════════════════════════════
+' DIAGRAMA DE SEQUÊNCIA - CRIAR PEDIDO COM PAGAMENTO
+' 
+' Demonstra o fluxo de interação entre objetos quando um cliente cria um pedido
+' ═══════════════════════════════════════════════════════════════════════════
+
+actor "Cliente\n(Usuário)" as Usuario
+participant "RestauranteMain\n(Controlador)" as App
+participant "Restaurante\n(Gerenciador)" as Restaurante
+participant "Cliente\n(Objeto)" as ClienteObj
+participant "Pedido\n(Agregação)" as PedidoObj
+participant "Produto\n(Abstrata)" as Produto
+participant "ItemPedido\n(Composição)" as Item
+participant "MetodoPagamento\n(Interface)" as Pagamento
+participant "PagamentoCartao\n(Implementação)" as CartaoObj
+
+autonumber
+
+Usuario -> App: Escolhe opção 2 (Criar Pedido)
+activate App
+    note over App
+        **[1. CRIAR CLIENTE]**
+        Demonstra: Objeto, Encapsulamento,
+        Construtor, Validação
+    end note
+
+    App -> App: Solicita nome, telefone, endereco
+    Usuario -> App: Fornece dados
+
+    App -> ClienteObj: new Cliente(nome, telefone, endereco)
+    activate ClienteObj
+        note over ClienteObj: Validação no construtor
+        ClienteObj --> App: Objeto criado
+    deactivate ClienteObj
+
+    note over App
+        **[2. CRIAR PEDIDO]**
+        Demonstra: Herança (Pedido vs Delivery)
+        Agregação (Pedido contém ItemPedido)
+    end note
+
+    App -> PedidoObj: new Pedido(cliente)
+    activate PedidoObj
+        PedidoObj -> PedidoObj: Inicializa lista de itens
+        PedidoObj -> PedidoObj: Seta status = PENDENTE
+        PedidoObj --> App: Pedido criado
+    deactivate PedidoObj
+
+    note over App
+        **[3. BUSCAR PRODUTOS]**
+        Demonstra: Polimorfismo
+        (Bebida, PratoPrincipal, Sobremesa
+        são tipos de Produto)
+    end note
+
+    loop Enquanto usuário adicionar itens
+        Usuario -> App: Escolhe produto e quantidade
+        
+        App -> Restaurante: buscarProduto(nome)
+        activate Restaurante
+            Restaurante -> Produto: Busca lista de produtos
+            Produto --> Restaurante: Retorna Produto
+        deactivate Restaurante
+
+        note over Produto
+            **Polimorfismo em ação:**
+            Pode ser Bebida, PratoPrincipal
+            ou Sobremesa (todos extends Produto)
+        end note
+
+        App -> PedidoObj: adicionarItem(produto, quantidade)
+        activate PedidoObj
+            note over Item
+                **[COMPOSIÇÃO]**
+                ItemPedido não existe
+                sem um Produto
+            end note
+
+            PedidoObj -> Item: new ItemPedido(produto, quantidade)
+            activate Item
+                Item -> Produto: getPreco()
+                Produto --> Item: preco
+                Item -> Item: subtotal = preco * quantidade
+                Item --> PedidoObj: ItemPedido criado
+            deactivate Item
+
+            PedidoObj -> PedidoObj: itens.add(itemPedido)
+        deactivate PedidoObj
+    end
+
+    note over App
+        **[4. EXIBIR RESUMO]**
+        Demonstra: Stream API
+        (calcularTotal usa mapToDouble().sum())
+    end note
+
+    App -> PedidoObj: exibirResumo()
+    activate PedidoObj
+        PedidoObj -> PedidoObj: calcularTotal()
+        note over PedidoObj
+            Stream API:
+            itens.stream()
+              .mapToDouble(::getSubtotal)
+              .sum()
+        end note
+        PedidoObj --> App: Resumo exibido
+    deactivate PedidoObj
+
+    note over App
+        **[5. ESCOLHER MÉTODO DE PAGAMENTO]**
+        Demonstra: Polimorfismo
+        (Cartão ou Pix - ambos implementam
+        a interface MetodoPagamento)
+    end note
+
+    Usuario -> App: Escolhe tipo de pagamento
+    
+    alt Usuario escolhe Cartão
+        App -> CartaoObj: new PagamentoCartao(operadora)
+        activate CartaoObj
+            CartaoObj -> CartaoObj: Gera numero de cartao
+            CartaoObj --> App: Objeto criado
+        deactivate CartaoObj
+        
+        note over Pagamento
+            **POLIMORFISMO:**
+            PagamentoCartao implements
+            MetodoPagamento
+        end note
+    else Usuario escolhe Pix
+        App -> Pagamento: new PagamentoPix()
+        activate Pagamento
+            Pagamento -> Pagamento: Gera chave PIX
+            Pagamento --> App: Objeto criado
+        deactivate Pagamento
+    end
+
+    note over App
+        **[6. PROCESSAR PAGAMENTO]**
+        Demonstra: Polimorfismo
+        (mesma interface, comportamentos
+        diferentes)
+    end note
+
+    App -> PedidoObj: finalizarPedido(metodo)
+    activate PedidoObj
+        PedidoObj -> PedidoObj: calcularTotal()
+        
+        PedidoObj -> Pagamento: processarPagamento(total)
+        activate Pagamento
+            note over Pagamento
+                Método polimórfico:
+                pode ser PagamentoCartao
+                ou PagamentoPix
+            end note
+            
+            alt Se PagamentoCartao
+                Pagamento -> CartaoObj: validarCartao()
+                CartaoObj --> Pagamento: true/false
+            else Se PagamentoPix
+                Pagamento -> Pagamento: gerar QR Code
+            end
+            
+            Pagamento --> PedidoObj: Pagamento processado
+        deactivate Pagamento
+        
+        PedidoObj -> PedidoObj: status = PREPARANDO
+        
+        note over PedidoObj
+            **[THREAD]**
+            Simula cozinha em background
+        end note
+        
+        note over PedidoObj
+            new Thread(() -> {
+              sleep(3000)
+              status = PRONTO
+              notifica cliente
+            }).start()
+        end note
+        
+        PedidoObj --> App: Pedido finalizado
+    deactivate PedidoObj
+
+    note over App
+        **[7. AGREGAR PEDIDO]**
+        Demonstra: Agregação
+        (Restaurante contém lista de Pedidos)
+    end note
+
+    App -> Restaurante: adicionarPedido(pedido)
+    activate Restaurante
+        Restaurante -> Restaurante: pedidos.add(pedido)
+        Restaurante --> App: Pedido adicionado
+    deactivate Restaurante
+
+    App --> Usuario: ✅ Pedido registrado com sucesso!
+
+deactivate App
+
+note over Usuario, CartaoObj
+    **CONCEITOS DEMONSTRADOS:**
+    
+    1. OBJETOS: Cliente, Pedido, CartaoObj, ItemPedido
+    2. ENCAPSULAMENTO: Acesso via métodos públicos
+    3. CONSTRUTOR: Validação de dados
+    4. HERANÇA: Pedido pode ser Delivery
+    5. POLIMORFISMO: PagamentoCartao vs PagamentoPix
+    6. INTERFACE: MetodoPagamento define contrato
+    7. AGREGAÇÃO: Restaurante contém Pedidos
+    8. COMPOSIÇÃO: ItemPedido contém Produto
+    9. STREAM API: calcularTotal() usa streams
+    10. EXCEPTIONS: RestauranteException customizada
+    11. THREAD: Simulação de cozinha em background
+    12. ENUM: StatusPedido controla estado
+end note
+
+@enduml

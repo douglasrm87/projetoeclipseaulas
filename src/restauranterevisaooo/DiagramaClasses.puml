@@ -1,0 +1,220 @@
+@startuml ClassDiagram
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #333333
+
+' ═══════════════════════════════════════════════════════════════════════════
+' DIAGRAMA DE CLASSES - SISTEMA RESTAURANTE DUKE GOURMET
+' 
+' Demonstra todos os conceitos de OOP:
+' - Herança (Produto -> Bebida, PratoPrincipal, Sobremesa)
+' - Interfaces (MetodoPagamento)
+' - Associação (Cliente, Pedido, Restaurante)
+' - Agregação (Pedido contém lista de ItemPedido)
+' - Composição (ItemPedido contém Produto)
+' - Enums (StatusPedido)
+' ═══════════════════════════════════════════════════════════════════════════
+
+' [CLASSES ABSTRATAS]
+abstract class Produto {
+    - nome: String
+    - preco: double
+    - descricao: String
+    + getNome(): String
+    + getPreco(): double
+    + getDescricao(): String
+    + {abstract} exibirDetalhes(): void
+    + exibirInformacoes(): void
+}
+
+' [HERANÇA - Bebida]
+class Bebida {
+    - temperatura: String
+    + getTemperatura(): String
+    + exibirDetalhes(): void
+}
+
+' [HERANÇA - PratoPrincipal]
+class PratoPrincipal {
+    - calorias: String
+    - contemGluten: boolean
+    + getCalorias(): String
+    + isContemGluten(): boolean
+    + exibirDetalhes(): void
+}
+
+' [HERANÇA - Sobremesa]
+class Sobremesa {
+    - tempodeSabor: String
+    - contemLactose: boolean
+    + getTempodeSabor(): String
+    + isContemLactose(): boolean
+    + exibirDetalhes(): void
+}
+
+' [ENUMS]
+enum StatusPedido {
+    PENDENTE
+    PREPARANDO
+    PRONTO
+    ENTREGUE
+    + getDescricao(): String
+}
+
+' [CLIENTE]
+class Cliente {
+    - nome: String
+    - telefone: String
+    - endereco: String
+    + getNome(): String
+    + getTelefone(): String
+    + getEndereco(): String
+    + setTelefone(String): void
+    + setEndereco(String): void
+}
+
+' [ITEM DO PEDIDO - Composição]
+class ItemPedido {
+    - produto: Produto
+    - quantidade: int
+    - subtotal: double
+    + getProduto(): Produto
+    + getQuantidade(): int
+    + getSubtotal(): double
+    + {deprecated} calcularSubtotal(): double
+}
+
+' [PEDIDO PRINCIPAL]
+class Pedido {
+    # itens: List<ItemPedido>
+    # status: StatusPedido
+    # cliente: Cliente
+    # dataCriacao: LocalDateTime
+    + getCliente(): Cliente
+    + getStatus(): StatusPedido
+    + getItens(): List<ItemPedido>
+    + adicionarItem(Produto, int): void
+    + finalizarPedido(MetodoPagamento): void
+    + calcularTotal(): double
+    + exibirResumo(): void
+}
+
+' [DELIVERY - Herança de Pedido]
+class Delivery {
+    - enderecoEntrega: String
+    - taxaEntrega: double
+    - statusEntrega: String
+    + getEnderecoEntrega(): String
+    + getTaxaEntrega(): double
+    + getStatusEntrega(): String
+    + setStatusEntrega(String): void
+    + calcularTotal(): double
+    + exibirResumo(): void
+}
+
+' [INTERFACE - Contrato de Pagamento]
+interface MetodoPagamento {
+    + {abstract} processarPagamento(double): void
+}
+
+' [IMPLEMENTAÇÃO - Cartão]
+class PagamentoCartao {
+    - operadora: String
+    - numeroCartao: String
+    + getOperadora(): String
+    + processarPagamento(double): void
+    - validarCartao(): boolean
+}
+
+' [IMPLEMENTAÇÃO - PIX]
+class PagamentoPix {
+    - chaveAleatoria: String
+    + processarPagamento(double): void
+    - gerarChavePix(): String
+}
+
+' [EXCEÇÃO CUSTOMIZADA]
+class RestauranteException {
+    + RestauranteException(String)
+    + RestauranteException(String, Throwable)
+}
+
+' [RESTAURANTE - Gerenciador]
+class Restaurante {
+    - nome: String
+    - pedidos: List<Pedido>
+    - cardapio: List<Produto>
+    + getNome(): String
+    + getPedidos(): List<Pedido>
+    + getCardapio(): List<Produto>
+    - inicializarCardapio(): void
+    + exibirCardapio(): void
+    + adicionarPedido(Pedido): void
+    + buscarProduto(String): Produto
+    + exibirPedidos(): void
+}
+
+' ═══════════════════════════════════════════════════════════════════════════
+' RELACIONAMENTOS
+' ═══════════════════════════════════════════════════════════════════════════
+
+' [HERANÇA]
+Produto <|-- Bebida : extends
+Produto <|-- PratoPrincipal : extends
+Produto <|-- Sobremesa : extends
+
+' [HERANÇA]
+Pedido <|-- Delivery : extends
+
+' [INTERFACE IMPLEMENTATION]
+MetodoPagamento <|.. PagamentoCartao : implements
+MetodoPagamento <|.. PagamentoPix : implements
+
+' [EXCEÇÃO EXTENDS]
+Exception <|-- RestauranteException : extends
+
+' [ASSOCIAÇÃO - Cliente para Pedido]
+Cliente "1" -down- "*" Pedido : associado a >
+
+' [AGREGAÇÃO - Pedido contém ItemPedido]
+Pedido "1" o-down- "*" ItemPedido : contém (agregação) >
+
+' [COMPOSIÇÃO - ItemPedido contém Produto]
+ItemPedido "*" *-down- "1" Produto : contém (composição) >
+
+' [ASSOCIAÇÃO - Pedido usa MetodoPagamento]
+Pedido -right- MetodoPagamento : usa >
+
+' [ENUM - Pedido usa StatusPedido]
+Pedido -left- StatusPedido : possui >
+
+' [AGREGAÇÃO - Restaurante contém Pedidos e Produtos]
+Restaurante "1" o-- "*" Pedido : gerencia pedidos >
+Restaurante "1" o-- "*" Produto : gerencia cardápio >
+
+note right of Produto
+  **Classe Abstrata**
+  Define contrato para
+  todos os produtos
+end note
+
+note right of MetodoPagamento
+  **Interface**
+  Define contrato para
+  métodos de pagamento
+end note
+
+note right of ItemPedido
+  **Composição**
+  ItemPedido depende
+  de Produto para existir
+end note
+
+note right of Pedido
+  **Agregação**
+  Pedido contém
+  lista de ItemPedido
+end note
+
+@enduml
