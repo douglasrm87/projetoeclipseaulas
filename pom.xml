@@ -7,17 +7,51 @@
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<!-- PostgreSQL JDBC Driver para conexão com Supabase -->
 		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
-		    <version>LATEST</version>
+		    <version>42.7.3</version>
 		</dependency>
-    
-       
 
-   </dependencies>
+		<!-- HikariCP para pool de conexões (melhor performance) -->
+		<dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>5.1.0</version>
+		</dependency>
+
+		<!-- SLF4J API para logging -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>2.0.11</version>
+		</dependency>
+
+		<!-- SLF4J Simple implementation para logging console -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>2.0.11</version>
+		</dependency>
+  </dependencies>
 
 </project>

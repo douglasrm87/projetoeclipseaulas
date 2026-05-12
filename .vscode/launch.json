@@ -3,6 +3,20 @@
     "configurations": [
       {
         "type": "java",
+        "name": "ExemploConexaoSupaBase",
+        "request": "launch",
+        "mainClass": "bancodadossupabse.ExemploConexaoSupaBase",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "ConexaoSupaBase",
+        "request": "launch",
+        "mainClass": "bancodadossupabse.ConexaoSupaBase",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "RestauranteMain",
         "request": "launch",
         "mainClass": "restauranterevisaooo.RestauranteMain",
