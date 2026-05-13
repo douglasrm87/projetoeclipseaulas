@@ -18,28 +18,33 @@ public class ExemploConexaoSupaBase {
         testarConexao();
         
         // 2. Criar tabela de exemplo
-        criarTabelaExemplo();
+        //criarTabelaExemplo();
         
         // 3. Inserir dados
-        inserirDados();
+        //inserirDados();
         
         // 4. Consultar dados
-        consultarDados();
+        //consultarDados();
         
         // 5. Fechar pool
-        ConexaoSupaBase.fecharPool();
+        //ConexaoSupaBase.fecharPool();
     }
     
     /**
      * Testa a conexão com Supabase
      */
     public static void testarConexao() {
-        System.out.println("1. Testando conexão com Supabase...");
-        if (ConexaoSupaBase.conectarSupaBase()) {
-            System.out.println("   ✓ Conexão bem-sucedida!\n");
-        } else {
-            System.out.println("   ✗ Falha na conexão!\n");
-            return;
+        try {
+            System.out.println("1. Testando conexão com Supabase...");
+            if (ConexaoSupaBase.conectarSupaBase()) {
+                System.out.println("   ✓ Conexão bem-sucedida!\n");
+            } else {
+                System.out.println("   ✗ Falha na conexão!\n");
+                return;
+            }
+        } catch (Exception e) {
+                System.err.println("   ✗ Erro ao testar conexão: " +             e.getMessage());
+            //.printStackTrace();
         }
     }
     
@@ -74,7 +79,7 @@ public class ExemploConexaoSupaBase {
     public static void inserirDados() {
         System.out.println("3. Inserindo dados de exemplo...");
         
-        String[] usuarios = {
+        String[][] usuarios = {
             {"João Silva", "joao@example.com"},
             {"Maria Santos", "maria@example.com"},
             {"Pedro Oliveira", "pedro@example.com"}
