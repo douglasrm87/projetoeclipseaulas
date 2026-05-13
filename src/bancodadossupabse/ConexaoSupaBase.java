@@ -24,10 +24,12 @@ public class ConexaoSupaBase {
 private static final int SUPABASE_PORT = 6543;
 private static final String SUPABASE_DATABASE = "postgres";
 private static final String SUPABASE_USER =    "postgres.pjqghjdocznjdilgymzr";
-private static final String SUPABASE_PASSWORD =   "12Eggds2##";
+
+private static final String SUPABASE_PASSWORD =
+    "12EGG2##";
  
 
- private static final String JDBC_URL = "jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:6543/postgres?user=postgres.pjqghjdocznjdilgymzr&password=12Eggds2##&sslmode=require";
+ private static final String JDBC_URL = "jdbc:postgresql://aws-1-us-east-1.pooler.supabase.com:6543/postgres?user=postgres.pjqghjdocznjdilgymzr&password=12EGG2##&sslmode=require";
  
  
 

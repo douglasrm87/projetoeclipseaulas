@@ -18,16 +18,16 @@ public class ExemploConexaoSupaBase {
         testarConexao();
         
         // 2. Criar tabela de exemplo
-        //criarTabelaExemplo();
+        criarTabelaExemplo();
         
         // 3. Inserir dados
-        //inserirDados();
+        inserirDados();
         
         // 4. Consultar dados
-        //consultarDados();
+        consultarDados();
         
         // 5. Fechar pool
-        //ConexaoSupaBase.fecharPool();
+        ConexaoSupaBase.fecharPool();
     }
     
     /**
