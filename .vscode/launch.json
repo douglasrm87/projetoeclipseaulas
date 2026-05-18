@@ -3,6 +3,20 @@
     "configurations": [
       {
         "type": "java",
+        "name": "Principal",
+        "request": "launch",
+        "mainClass": "bancodadossupabse.main.Principal",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
+        "name": "Teste",
+        "request": "launch",
+        "mainClass": "Teste",
+        "projectName": "projetoeclipseaulas"
+      },
+      {
+        "type": "java",
         "name": "ExemploConexaoSupaBase",
         "request": "launch",
         "mainClass": "bancodadossupabse.ExemploConexaoSupaBase",
