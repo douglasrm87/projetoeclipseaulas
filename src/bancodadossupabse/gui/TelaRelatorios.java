@@ -3,6 +3,7 @@ package bancodadossupabse.gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.ObjectInputFilter.Status;
 import java.util.List;
 import bancodadossupabse.dao.AlunoDAO;
 import bancodadossupabse.dao.MatriculaDAO;
@@ -132,7 +133,7 @@ public class TelaRelatorios extends JPanel {
 
         int ativas = 0, trancadas = 0, canceladas = 0;
         for (Matricula mat : matriculas) {
-            if (mat.getStatus() == status) {
+            if (mat.getStatus() == StatusMatricula.ATIVA) {
                 switch (mat.getStatus()) {
                     case ATIVA:
                         ativas++;
